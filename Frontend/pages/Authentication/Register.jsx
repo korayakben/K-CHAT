@@ -57,6 +57,10 @@ function Register() {
                 <span style={{color:"grey", textAlign: "center", position: "relative", top:"-2rem"}}>Or sign up with</span>
 
                 <StrategyButtons/>
+
+                <button>Wait a min</button>
+                <button>Wait a min</button>
+                <button>Wait a min</button>
                 
             </form>
         </div>
