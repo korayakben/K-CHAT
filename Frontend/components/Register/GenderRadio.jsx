@@ -5,7 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-export default function GenderRadio() {
+export default function GenderRadio({onChange}) {
   return (
     <FormControl>
       <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
@@ -14,9 +14,9 @@ export default function GenderRadio() {
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
       >
-        <FormControlLabel value="female" control={<Radio />} label="Female" />
-        <FormControlLabel value="male" control={<Radio />} label="Male" />
-        <FormControlLabel value="other" control={<Radio />} label="Other" />
+        <FormControlLabel onChange={onChange} name="gender" value="female" control={<Radio />} label="Female" />
+        <FormControlLabel onChange={onChange} name="gender" value="male" control={<Radio />} label="Male" />
+        <FormControlLabel onChange={onChange} name="gender" value="other" control={<Radio />} label="Other" />
     
       </RadioGroup>
     </FormControl>

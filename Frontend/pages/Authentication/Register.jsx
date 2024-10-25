@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../../public/register.css"
 import Input from '../../components/Register/Input'
 import BasicButton from '../../components/Register/Button';
@@ -12,38 +12,62 @@ import CountrySelect from '../../components/Register/CountrySelect';
 
 function Register() {
 
+    const [formData, setFormData] = useState({
+        name: '',
+        surname: '',
+        email: '',
+        password: '',
+        passwordRepeat: '',
+        gender: '',
+        country: ''
+    });
+
     useEffect(()=>{
         document.body.style.overflow = "auto"
     },[]);
+
+    const onChange = (e)=>{
+        const {name, value} = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    }
+
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        alert(formData);
+        console.log(formData);
+    }
     
   return (
     <div className='register-container'>
         <div className='title'>K Chat Register</div>
         <div className='form-container'>
             <div id="form-title">Create Account</div>
-            <form action="">
+            <form action="" onSubmit={handleSubmit}>
 
                 <div> 
-                    <Input type="text" title="Your Name" placeholder="yourname"/>
-                    <Input type="text" title="Surname" placeholder="surname"/>
+                    <Input type="text" title="Your Name" placeholder="yourname" name="name" onChange={onChange}/>
+                    <Input type="text" title="Surname" placeholder="surname" name="surname" onChange={onChange}/>
                 </div>
 
                 <div style={{display: "flex", flexDirection: "column", gap: "0"}}>
                     <div style={{fontSize: "90%", marginBottom: "7px"}}>Email:</div>
-                    <TextField className="outlined-basic" variant="outlined" type="email" placeholder='email' required InputProps={{style:{height: "5vh"}}}/>
+                    <TextField className="outlined-basic" variant="outlined" type="email" placeholder='email' name="email" onChange={onChange} required InputProps={{style:{height: "5vh"}}}/>
                 </div>
 
                 <div>
-                    <Input type="password" title="Password" placeholder="password"/>
-                    <Input type="password" title="Password Repeat" placeholder="password again"/>
+                    <Input type="password" title="Password" placeholder="password" name="password" onChange={onChange}/>
+                    <Input type="password" title="Password Repeat" placeholder="password again" name="passwordRepeat" onChange={onChange}/>
                 </div>
 
                 <div className='genderRadio-container'>
-                    <GenderRadio/>
+                    <GenderRadio onChange={onChange}/>
                 </div>
                 
                 <div className='genderRadio-container'>
-                    <CountrySelect/>
+                    <CountrySelect onChange={onChange}/>
                 </div>
 
 
@@ -57,10 +81,6 @@ function Register() {
                 <span style={{color:"grey", textAlign: "center", position: "relative", top:"-2rem"}}>Or sign up with</span>
 
                 <StrategyButtons/>
-
-                <button>Wait a min</button>
-                <button>Wait a min</button>
-                <button>Wait a min</button>
                 
             </form>
         </div>
