@@ -1,0 +1,331 @@
+.accordionForm-titles{
+    font-size: 150%;
+    width: 100%;
+    text-align: center;
+}
+
+
+.changeEmailForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -2vh;
+}
+
+.privSecForm-title{
+    font-size: 21px;
+    position: relative;
+    top: 0.7rem;
+    width: 230px;
+    text-align: center;
+}
+
+.privSecForm-container{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.privSecForm-container > input{
+    height: 5vh;
+    width: 400px;
+    outline: none;
+    border: 1px solid rgb(179, 179, 179);
+    border-radius: 5px;
+    padding-left: 2%;
+}
+
+.privSecForm-container > input:focus{
+    outline: 1px solid rgb(43, 113, 255);
+}
+
+.privSecForm-btn{
+    width: 300px;
+    height: 5vh;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(43, 113, 255);
+    color: #fff;
+    font-size: 100%;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.privSecForm-btn:hover{
+    background-color: rgb(0, 64, 255);
+    transition: 1s;
+}
+
+#deleteAccount-btn:hover{
+    background-color: rgb(176, 9, 9);
+}
+
+.privSec-container{
+    text-align: center;
+    font-size: 200%;
+    padding: 1%;
+    opacity: 0.8;
+    font-weight: 600;
+    color: rgb(0, 115, 255);
+}
+
+.settingsCard-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3.5rem;
+    padding-top: 5vh;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2%;
+}
+
+.settingsTitle-container{
+    text-align: center;
+    font-size: 200%;
+    padding: 1%;
+    opacity: 0.8;
+    font-weight: 600;
+    color: rgb(0, 115, 255);
+    position: relative;
+    top: 2vh;
+}
+
+.termsPol{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 4vh 0 4vh 0;
+    width: 80%;
+    padding: 1% 6%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(171, 170, 170);
+}
+
+.termsPol-container{
+    display: flex;
+    justify-content: center;
+}
+
+
+/* personal information */
+.personalForm-container{
+    display: flex;
+    justify-content: center;
+}
+
+.personalForm{
+    background-color: #fff;
+    padding: 2%;
+    border-radius: 10px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4vh;
+}
+
+.personalLeft{
+    border: 1px solid #969696;
+    background-color: rgb(241, 241, 241);
+    color: rgb(68, 67, 67);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px 0 0 5px;
+    padding: 4%;
+    max-width: 80px;
+}
+
+.personalFormDiv{
+    display: flex;
+    gap: 0;
+    width: 100%;
+}
+
+.personalFormDiv > input{
+    border: 1px solid #b5b5b5;
+    border-radius: 0 5px 5px 0;
+    outline: none;
+    padding-left: 2%;
+    width: 100%;
+}
+
+/* Contact Me */
+
+.contactPage-body{
+    margin-top: 2vh;
+    display: flex;
+    margin-bottom: 4vh;
+    gap: 5rem;
+    padding: 2%;
+}
+
+.onlineInquiry{
+    background-color: #fff;
+    border-radius: 10px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2%;
+}
+
+.onlineInq-Title{
+    font-size: 150%;
+    color: rgb(0, 115, 255);
+    font-weight: 600;
+}
+
+.onlineInq-Form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.onlineInq-input{
+    width: 100%;
+}
+
+#textArea{
+    height: 10vh;
+}
+
+#contactSend-btn{
+    width: 70%;
+    background-color: rgb(43, 113, 255);
+}
+
+.contactDetails-container{
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1%;
+}
+
+.DetailsTitle{
+    font-size: 170%;
+    text-align: center;
+    padding: 2%;
+    font-weight: 600;
+    color: rgb(0, 115, 255);
+}
+
+.detailAddresses-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3vh;
+}
+
+.contactWays{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.emailContact{
+    font-size: 120%;
+}
+
+.phoneContact{
+    font-size: 120%;
+}
+
+.cityContact{
+    font-size: 150%;
+    font-weight: 600;
+    color: rgb(78, 78, 78);
+}
+
+.openAddContact{
+    font-size: 120%;
+    opacity: 0.9;
+}
+
+.openAddress{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2vh;
+}
+
+@media(max-width: 1060px){
+    .settings-cardPhoto{
+        position: relative;
+        left: -10%;
+    }
+
+    .contactPage-body{
+        display: flex;
+        gap: 1rem;
+    }
+}
+
+@media(max-width: 901px){
+    .settings-cardPhoto{
+        position: relative;
+        left: -15%;
+    }
+
+    .personalForm{
+        width: 80%;
+        padding: 5%;
+        margin-top: 3vh;
+    }
+
+    .personalFormDiv{
+        width: 100%;
+    }
+
+    .contactPage-body{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .contactPage-body > *{
+        width: 90%;
+        padding: 3%;
+    }
+}
+
+
+@media(max-width: 550px){
+    .settingsCard-container{
+        padding: 7% 4%;
+    }
+
+    .termsPol{
+        width: 90%;
+        font-size: 90%;
+    }
+
+    .onlineInquiry, .contactDetails-container{
+        width: 100%;
+    }
+}
+
+@media(max-width: 430px){
+    .settingsCard-container{
+        padding: 7% 4%;
+    }
+
+    .detailAddresses-container{
+        font-size: 90%;
+    }
+}
+
+
+
+

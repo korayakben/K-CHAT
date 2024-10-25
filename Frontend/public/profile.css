@@ -1,0 +1,804 @@
+#navbar{
+    background-color: rgb(255, 255, 255);
+    box-shadow: none;
+    position: relative;
+    height: 9.5vh;
+    border-bottom: 1px solid rgb(211, 211, 211);
+}
+
+#navbarIcon{
+    width: 3%;
+    padding-left: 1.5%;
+    padding-right: 1%;
+}
+
+#nav-title{
+    font-size: 120%;
+    padding-left: 1%;
+    padding-right: 1%;
+    font-weight: 600;
+    color: rgb(12, 111, 250);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    gap:0.5rem;
+}
+
+#navbarIcon{
+    width: 40px;
+}
+
+.nav-icons:hover{
+    background-color: rgb(146, 202, 255);
+    color:rgb(0, 89, 255);
+    transition: 1s;
+}
+
+.navButton{
+    background-color: rgb(221, 221, 221);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color:rgb(77, 77, 77);
+    border-style: none;
+    cursor: pointer;
+}
+
+.navButton:hover{
+    background-color: rgb(211, 234, 255);
+    color:rgb(44, 115, 245);
+    transition: 1s;
+}
+
+.chat-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.usersBar{
+    position: relative;
+    background-color: #fff;
+    border-right: 1px solid rgb(211, 211, 211);
+    width: 350px;
+    height: 18rem;
+}
+
+.usersBar-title{
+    font-size: 130%;
+    padding: 2% 0 2% 5%;
+    color:rgb(101, 101, 101);
+    font-weight: 600;
+}
+
+.userSearchBar{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    position: relative;
+    top:0.8rem;
+}
+
+.messageInput-container{
+    display: flex;
+    background-color: #fff;
+    padding: 3%;
+    gap:1.5rem;
+    width: 264%;
+    position: relative;
+    top:4vh;
+}
+
+
+.userDiv{
+    display: flex;
+    padding: 4%;
+    cursor: pointer;
+}
+
+.userDiv:hover{
+    background-color: rgb(236, 236, 236);
+    transition: 0.5s;
+}
+
+.userPhotos{
+    width: 17%;
+    border-radius: 10%;
+    padding: 0;
+}
+
+.allUsers{
+    height: 74.3vh;
+    overflow-y: auto;
+    background-color: #fff;
+    width: 350px;
+}
+
+.chat-whole{
+    display: flex;
+}
+
+.chatHeader-container{
+    background-color: #fff;
+    display: flex;
+    height: 13vh;
+    z-index: 1;
+    position: absolute;
+    width: 77%;
+}
+
+.headerPhoto{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4%;
+
+
+}
+
+.headerPhoto > img{
+    width: 80%;
+    padding: 0;
+    border-radius: 10px;
+}
+
+.credentials-container{
+    display: flex;
+    flex-direction: column;
+    gap:0.3rem;
+    justify-content: center;
+    margin-left: -4%;
+}
+
+#username{
+    color:rgb(88, 88, 88);
+    font-weight: 600;
+    width: 250%;
+}
+
+#activity{
+    font-size: 80%;
+    color:grey;
+}
+
+.headerIcons{
+    display: flex;
+    align-items: center;
+    gap:1.5rem;
+    padding: 2.5%;
+    margin-left: 50%;
+}
+
+.headerIcons > button{
+    background-color: rgb(230, 230, 230);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-style: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+}
+
+.headerIcons > button:hover{
+    background-color: rgb(211, 234, 255);
+    color:rgb(44, 115, 245);
+    transition: 1s;
+}
+
+.chatScreen-container{
+    background-color: transparent;
+    height: 77vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    width: 263%;
+    position: relative;
+    top:6rem;
+    
+}
+
+.messageField-container{
+    background-color: #fff;
+    height: 4.75rem;
+    display: flex;
+    align-items: center;
+    padding-left: 2%;
+    gap: 1.5rem;
+}
+
+.MessageBarIcons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    border-radius: 50%;
+    cursor: pointer;
+    border-style: none;
+}
+
+.MessageBarIcons:hover{
+    background-color: rgb(211, 234, 255);
+    color:rgb(44, 115, 245);
+    transition: 1s;
+}
+
+.messageInput{
+    width: 70%;
+    height: 2.5rem;
+}
+
+.messageInput > input{
+    width: 100%;
+    height: 2.5rem;
+    border-style: none;
+    background-color: rgb(231, 231, 231);
+    border-radius: 7px;
+    outline: none; 
+    border: none; 
+    padding: 2%;
+}
+
+.messageSendIcons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    border-radius: 50%;
+    cursor: pointer;
+    border-style: none;
+    background-color: #fff;
+}
+
+.messageSendIcons:hover{
+    background-color: rgb(211, 234, 255);
+    color:rgb(44, 115, 245);
+    transition: 1s;
+}
+
+.contactCount{
+    position: absolute;
+    font-size: 70%;
+    left: 6%;
+    top:2.2rem;
+    color:rgb(162, 162, 162);
+    font-weight: 600;
+
+}
+
+.chatBody{
+    display: flex;
+}
+
+#uploadFileButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    border-style: none;
+    background-color: rgb(230, 230, 230);
+    box-shadow: none;
+    color:#000;
+    position: absolute;
+    padding: 10%;
+    width: 38px;
+    height: 38px;
+    top: 0rem;
+    left: 20%;
+}
+
+.truncatedMessage{
+    font-size: 75%;
+    color:grey;
+}
+
+.fullMessage{
+    display: none;
+    color:grey;
+}
+
+.userDivName{
+    font-weight: 600;
+}
+
+#uploadFileButton:hover{
+    background-color: rgb(211, 234, 255);
+    color:rgb(44, 115, 245);
+    transition: 1s;
+}
+
+#uploadButton:hover{
+    box-shadow: none;
+}
+
+
+.messageBalloon{
+    background-color: rgb(28, 243, 28);
+    color:#fff;
+    max-width: 20%;
+    border-radius: 5px;
+    padding: 1%;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    display: none;
+}
+
+.chatHeader-bck{
+    background-color: #fff;
+    flex: 1;
+    height: 12vh;
+    display: flex;
+    align-items: center;
+}
+
+.chatHeaderbck-container{
+    display: flex;
+    align-items: center;
+    height: 12vh;
+    flex: 1;
+}
+
+.chatHeaderbck-container > img{
+    width: 60px;
+    padding: 0;
+    border-radius: 6px;
+    margin-left: 5%;
+}
+
+.userStates{
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    gap:0.2rem;
+}
+
+#username-bck{
+    font-weight: 600;
+    opacity: 0.7;
+}
+
+#state-bck{
+    font-size: 80%;
+    color:grey;
+}
+
+.chatHeaderBck-icons-container{
+    display: flex;
+    justify-content: center;
+    gap:10%;
+    width: 20%;
+    position: relative;
+    left: 40%;
+}
+
+.chatHeaderBck-icons-container > button{
+    background-color: rgb(230, 230, 230);
+    display: flex;
+    padding: 5%;
+    border-radius: 20%;
+    align-items: center;
+    border-style: none;
+    cursor: pointer;
+}
+
+.chatHeaderBck-icons-container > button:hover{
+    background-color: rgb(202, 229, 255);
+    color:rgb(0, 89, 255);
+    transition: 1s;
+}
+
+.chatBody-bck{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 12vh;
+}
+
+.chatScreenBck{
+    height: 68.5vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.inputBck-container{
+    background-color: #fff;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+}
+
+.inputIconsbck-container{
+    display: flex;
+    margin-left: 2%;
+    gap:1rem;
+}
+
+.inputIconbck{
+    border-style: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background-color: rgb(230, 230, 230);
+}
+
+.inputIconbck:hover{
+    background-color: rgb(202, 229, 255);
+    color:rgb(0, 89, 255);
+    transition: 1s;
+}
+
+#messageInput{
+    background-color: rgb(225, 225, 225);
+    margin-left: 2%;
+    border-style: none;
+    height: 5vh;
+    border-radius: 5px;
+    padding: 1%;
+    width: 70%;
+    border: none;
+    outline: none;
+
+}
+
+#sendBtnBck{
+    margin-left: 2%;
+    background-color: #fff;
+}
+
+.messageBalloonBck{
+    background-color: rgb(42, 248, 42);
+    color:#fff;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    margin: 1.5%;
+    width: fit-content;
+    max-width: 35%;
+    padding: 0.5% 1.5% 0.5% 1.5%;
+    border-radius: 10px;
+    display: none;
+    animation: comeup 2s forwards
+}
+
+.sidebarDirectors{
+    color:black;
+}
+
+.sidebarDirectors:hover{
+    color: grey;
+    transition: 1s;
+}
+
+.settingsBar-container{
+    position: absolute;
+    top: 6vh;
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    padding: 1%;
+    display: none;
+    left: -50%;
+}
+
+.settingsBar-container > button{
+    border-style: none;
+    height: 7vh;
+    font-size: 120%;
+    cursor: pointer;
+    margin: 0;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.settingsBar-container > button:hover, .settingsBar-container > button > a:hover{
+    background-color: rgb(213, 234, 255);
+    color:rgb(0, 89, 255);
+    transition: 1s;
+}
+
+.settingsBar-container > button > a{
+    color: #000;
+}
+
+.avatarnsettingsDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media(max-width: 1500px){
+    #inputting{
+        width: 90%;
+    }
+
+    .sendBtn-container{
+        margin-left: -7%;
+    }
+}
+
+@media(max-width: 1400px){
+    #inputting{
+        width: 85%;
+    }
+
+    .sendBtn-container{
+        margin-left: -11%;
+    }
+}
+
+@media(max-width: 1370px){
+    #inputting{
+        width: 80%;
+    }
+
+    .sendBtn-container{
+        margin-left: -15.5%;
+    }
+}
+
+
+@media(max-width: 1290px){
+
+    
+    .headerPhoto > img{
+        width: 60px;
+    }
+    .headerIcons{
+        position: relative;
+        left: -3%;
+    }
+
+    #inputting{
+        width: 70%;
+    }
+
+    .sendBtn-container{
+        margin-left: -22%;
+    }
+}
+
+@media(max-width: 1235px){
+    .headerIcons{
+        position: relative;
+        left: -13%;
+    }
+
+    #inputting{
+        width: 60%;
+    }
+
+    .sendBtn-container{
+        margin-left: -29%;
+    }
+}
+
+@media(max-width: 1140px){
+
+    .chatHeaderBck-icons-container{
+        margin-left: -10%;
+    }
+
+    #inputting{
+        width: 50%;
+    }
+
+    .sendBtn-container{
+        margin-left: -36%;
+    }
+}
+
+@media(max-width: 1100px){
+    #username{
+        width: 270%;
+    }
+
+    .headerIcons{
+        position: relative;
+        left: -17%;
+    }
+}
+
+@media(max-width: 1061px){
+
+    .chatHeaderBck-icons-container{
+        margin-left: -20%;
+        gap:20%;
+}
+
+    
+
+    #nav-title{
+        margin-left: -3%;
+    }
+
+    .userDiv{
+        margin-left: -10%;
+    }
+
+    .userPhotos{
+        width: 15%;
+    }
+
+    #inputting{
+        width: 40%;
+    }
+
+    .sendBtn-container{
+        margin-left: -43.5%;
+    }
+}
+
+@media(max-width: 1040px){
+       .headerIcons{
+        position: relative;
+        left: -23%;
+    }
+}
+
+@media(max-width: 980px){
+    .headerIcons{
+     position: relative;
+     left: -30%;
+ }
+
+ #inputting{
+    width: 30%;
+}
+
+.sendBtn-container{
+    margin-left: -50%;
+}
+}
+
+@media(max-width: 903px){
+
+    .chatHeaderBck-icons-container{
+        margin-left: -30%;
+    }
+
+    #nav-title{
+        margin-left: -5%;
+    }
+
+    .userDiv{
+        margin-left: -15%;
+    }
+
+    .userPhotos{
+        width: 13%;
+    }
+
+    #segmentIcon{
+        display: none;
+    }
+
+    #voiceBtn{
+        display: none;
+    }
+    #sendIcon{
+        margin-left: 50%;
+    }
+
+    .messageInput-container{
+        position: relative;
+        top: 2.2rem;
+    }
+}
+
+@media(max-width: 835px){
+    .chatBody-bck{
+        display: none;
+    }
+
+    .usersBar-title{
+        font-size: 200%;
+    }
+
+    .allUsers{
+        height: 66.5vh;
+    }
+
+    .contactCount{
+        position: relative;
+        top:-0.5rem;
+        font-size: 100%;
+        left: 5%;
+    }
+
+    .usersBar, .allUsers{
+        width: 100%;
+    }
+
+    .truncatedMessage{
+        font-size: 95%;
+        
+    }
+
+    .userDivName{
+        font-size: 120%;
+    }
+
+    #userSearchBar{
+        position: relative;
+        top:-0.5rem;
+    }
+}
+
+@media(max-width: 760px){
+    .truncatedMessage{
+        font-size: 87%;
+    }
+}
+
+@media(max-width: 700px){
+    .truncatedMessage{
+        font-size: 82%;
+    }
+}
+
+@media(max-width: 680px){
+    .allUsers{
+        height: 69vh;
+    }
+}
+
+@media(max-width: 640px){
+    #navIcon-container{
+        display: flex;
+        margin-left: -3%;
+    }
+}
+
+@media(max-width: 625px){
+
+    .fullMessage{
+        font-size: 95%;
+    }
+}
+
+@media(max-width: 600px){
+
+    .truncatedMessage{
+        font-size: 77%;
+    }
+
+    .allUsers{
+        height: 68vh;
+    }
+
+    #navIcon-container{
+        display: none;
+    }
+}
+
+@media(max-width: 470px){
+
+    .allUsers{
+        overflow-x: hidden;
+    }
+    
+    .userDiv{
+        width: 130%;
+        margin-left: -18%;
+    }
+    
+    .userPhotos{
+        width: 13%;
+    }
+}
+
+
+

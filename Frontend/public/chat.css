@@ -1,0 +1,682 @@
+.coverPhoto-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+}
+
+#coverPhoto{
+    width: 77%;
+    border-radius: 15px 15px 0 0; 
+}
+
+.profilePhoto-frame{
+    display: flex;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    margin-left: 5%;
+    position: relative;
+    top:-5vh;
+}
+
+#profilePhoto{
+    width: 150%;
+    border: 3px solid #fff;
+    border-radius: 5px;
+}
+
+.profileBoard-container{
+    display: flex;
+    justify-content: center;
+}
+
+.profileBoard{
+    background-color: #fff;
+    width: 77%;
+    border-radius: 0 0 15px 15px;
+    display: flex;
+    height: 15vh;
+    gap: 0.5rem;
+    
+}
+
+.credentials-container{
+    width: 40%;
+    margin-left: 2%;
+}
+
+.nicks-container{
+    display: flex;
+    align-items: center;
+    width: 190px;
+}
+
+#nickname{
+    font-size: 80%;
+    opacity: 0.6;
+}
+
+.contacts-container{
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+#contact-count{
+    font-size: 80%;
+    opacity: 0.8;
+}
+
+#mutual-count{
+    font-size: 80%;
+    opacity: 0.8;
+}
+
+.editTitle-container{
+    margin-top: 6vh;
+    display: flex;
+    justify-content: center;
+}
+
+.editTitle{
+    width: 77%;
+    font-size: 150%;
+    color:rgb(0, 149, 255);
+}
+
+.editSection-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.editSection{
+    width: 100%;
+    background-color: #fff;
+    height: auto;
+    padding: 3%;
+    margin-bottom: 2rem;
+    border-radius: 0 0  15px 15px;
+    
+}
+
+.upperEdit-Title{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5% 0% 1.5% 3%;
+    gap: 1vh;
+    font-weight: 600;
+}
+
+.upperEdit-upperSpan{
+    opacity: 0.8;
+}
+
+.upperEdit-lowerSpan{
+    opacity: 0.5;
+    font-size: 75%;
+}
+
+.upperEdit-Section{
+    display: flex;
+}
+
+.editForm-container{
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.firstRow{
+    display: flex;
+}
+
+.firstRow > div{
+    width: 100%;
+}
+
+.midRow{
+    display: flex;
+    flex-direction: column;
+}
+
+.midRow > input{
+    margin-top: -1%;
+}
+
+.midRow > span{
+    font-size: 80%;
+    opacity: 0.5;
+    font-weight: 600;
+    margin-top: -1%;
+}
+
+.editInput{
+    width: 90%;
+    height: 4.5vh;
+    border-radius: 5px;
+    outline: none; 
+    border: 1.5px rgb(191, 191, 191) solid;
+    padding-left: 1.5%;
+}
+
+.editSpans{
+    font-weight: 600;
+    opacity: 0.8;
+    font-size: 95%;
+}
+
+.lowerEdit-Section{
+    display: flex;
+    margin-top: 5vh;
+}
+
+.OAuths-box{
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    gap: 2vh;
+    
+}
+
+.editOAuth-container{
+    display: flex;
+    align-items: center;
+    border: 1px solid #cbcbcb;
+    padding: 1.5%;
+    width: 95%;
+    border-radius: 7px;
+}
+
+.googleIcon, .facebookIcon{
+    background-color: rgb(216, 23, 23);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    color: #fff;
+    border-radius: 7px;
+}
+
+.facebookIcon{
+    background-color: rgb(3, 109, 239);
+}
+
+.OAuth-titles{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+    width: 100%;
+}
+
+.OAuth-upperTitle{
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.OAuth-lowerTitle{
+    opacity: 0.8;
+    font-size: 90%;
+}
+
+
+/* About Section */
+.aboutBar-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.aboutBar{
+    width: 77%;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.aboutBar > Button{
+    background-color: rgb(99, 159, 255);
+    border: none;
+    color: #fff;
+}
+
+.aboutBar > Button:hover{
+    background-color: rgb(58, 103, 239);
+    transition: 1s;
+}
+
+.aboutSection-container{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sections-container{
+    width: 77%;
+}
+
+.about-container{
+    background-color: #fff;
+    width: 100%;
+    border-radius: 0 0 15px 15px; 
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vh;
+    margin-bottom: 4vh;
+}
+
+.basicInfo-Icons{
+    display: flex;
+    flex-direction: column;
+}
+
+.about-title{
+    font-size: 120%;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.about-description{
+    width: 400px;
+    font-size: 110%;
+    opacity: 0.9;
+}
+
+.about-socialIcons{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.about-socialIcons > button{
+    cursor: pointer;
+    display: flex;
+    border: none;
+    background-color: rgb(229, 229, 229);
+    padding: 0.7%;
+    color: #484848;
+    border-radius: 5px;
+}
+
+.about-socialIcons > button:hover{
+    background-color: rgb(211, 234, 255);
+    color:rgb(44, 115, 245);
+    transition: 1s;
+}
+
+.basicInfo-title{
+    font-size: 120%;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.basicInfo-Icons > a{
+    color: rgb(94, 93, 93);
+}
+
+.basicInfo-birth{
+    font-size: 80%;
+    font-weight: 600;
+    opacity: 0.6;
+}
+
+.basicInfo-birthday{
+    font-size: 120%;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.about-basicInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.basicInfo-container{
+    display: flex;
+    gap: 7%; 
+}
+
+/* Mutual Contacts */
+
+.mutual-container{
+    background-color: #fff;
+    width: 100%;
+    border-radius: 0 0 15px 15px; 
+    padding: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5vh;
+    margin-bottom: 4vh;
+}
+
+.mutualCard{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border: 1px solid #e2e2e2;
+    border-radius: 7px;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    padding: 3% 6%;
+}
+
+.mutualPhoto{
+    width: 70px;
+    border-radius: 50%;
+    position: relative;
+    left: -3%;
+}
+
+.nickname{
+    font-size: 85%;
+    font-weight: 600;
+    opacity: 0.5;
+}
+
+.username{
+    font-size: 100%;
+    width: 150px;
+    text-align: center;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+
+/* Stories  */
+
+.stories-container{
+    background-color: #fff;
+    width: 100%;
+    border-radius: 0 0 15px 15px; 
+    padding: 2%;
+    display: flex;
+    margin-bottom: 4vh;
+}
+
+.stories-title{
+    font-size: 130%;
+    font-weight: 600;
+    opacity: 0.8;
+    margin-left: 4%;
+}
+
+.stories{
+    width: 35%;
+}
+
+.storiesDiv{
+    max-height: 90vh;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1%;
+}
+
+.storyPhoto{
+    width: 40%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.storyPhoto:hover{
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+
+}
+
+.bigPhoto-container{
+    width: 65%;
+    display: flex;
+    justify-content: center;
+}
+
+.bigPhoto{
+    width: 82%;
+    height: fit-content;
+    border-radius: 5px;
+}
+
+.basicInfo-container{
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.addFriend-container{
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 20%;
+}
+
+#addFriend-btn{
+    background-color: rgb(34, 205, 34);
+    height: 40px;
+    box-shadow: none;
+    cursor: pointer;
+    transition: 1s;
+}
+
+#addFriend-btn:hover{
+    background-color: rgb(9, 196, 9);
+}
+
+@media(max-width: 1100px){
+    .upperEdit-Section, .lowerEdit-Section{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .upperEdit-upperSpan{
+        width: 300px;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .editForm-container{
+        width: 90%;
+        display: flex;
+        
+    }
+
+    .firstRow{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .firstRow > div , .midRow{
+       width: 100%;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+    }
+
+    #countryEdit{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #emailDesc{
+        font-size: 75%;
+    }
+
+    .upperEdit-Title{
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .OAuths-box, .editOAuth-container{
+        width: 100%;
+        padding: 2%;
+    }
+
+    .addFriend-container{
+        left: 15%;
+    }
+}
+
+@media(max-width: 1060px){
+    #coverPhoto{
+        margin-left: 0%;
+    }
+
+    .stories-container{
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 3vh;
+    }
+
+    .bigPhoto{
+        width: 100%;
+    }
+
+    .storyPhoto{
+        width: 32%;
+        position: relative;
+        left: -5%;
+    }
+
+    .stories{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        padding: 2%;
+        font-size: 150%;
+        gap: 2vh;
+    }
+
+    .storiesDiv{
+        display: flex;
+    }
+
+    .addFriend-container{
+        left: 10%;
+    }
+}
+
+@media(max-width: 878px){
+
+    #coverPhoto, .profileBoard{
+        width: 93%;
+    }
+
+    .mutualPhoto{
+        position: relative;
+        left: -8%;
+    }
+
+    .aboutSection-container > *{
+        width: 93%;
+    }
+
+    .aboutBar-container{
+        display: flex;
+        justify-content: start;
+    }
+
+    .aboutBar{
+        width: 440px;
+    }
+
+    .aboutBar > Button{
+        font-size: 70%;
+    }
+}
+
+@media(max-width: 680px){
+    #emailDesc{
+        font-size: 65%;
+    }
+
+    .addFriend-container{
+        left: 0%;
+    }
+
+    .nicks-container, .contacts-container{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media(max-width: 582px){
+
+    .profilePhoto-frame{
+        position: relative;
+        left: -1%;
+    }
+
+    .about-description{
+        font-size: 80%;
+        font-weight: 600;
+        opacity: 0.8;
+        width: 85%;
+    }
+
+    .mutualCard{
+        width: 70%;
+    }
+
+    .addFriend-container{
+        left: -5%;
+        display: flex;
+        justify-content: end;
+        width: 130px;  
+    }
+
+    #addFriend-btn{
+        font-size: 70%;
+        font-weight: 600;
+    }
+}
+
+@media(max-width: 500px){
+
+    #contactPoint{
+        display: none;
+    }
+
+    .profileBoard{
+        display: flex;
+        gap: 1rem;
+    }
+
+    .about-container{
+        padding: 8%;
+    }
+
+    .addFriend-container{
+        left: -5%;
+    }
+    
+}
+
+@media(max-width: 460px){
+    #emailDesc{
+        font-size: 60%;
+    }
+
+    .credentials-container{
+        padding-left: 2%;
+    }
+
+    #addFriend-btn{
+        width: 40px;
+        height: 60px;
+        padding: 40px;
+        border-radius: 50%;
+    }
+}
+
+
+

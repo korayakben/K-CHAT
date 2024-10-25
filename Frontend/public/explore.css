@@ -1,0 +1,105 @@
+.exploreTitle-container{
+    font-size: 200%;
+    text-align: center;
+    margin-top: 5vh;
+    font-weight: 600;
+    color: rgb(0, 115, 255); 
+}
+
+.exploreTitle-container > hr{
+    background-color: rgb(87, 161, 252);
+    width: 35%;
+    position: relative;
+    top: -1.5vh;
+}
+
+.exploreSearchBar-container{
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 50%;
+    padding: 2%;
+}
+
+#exploreSearchBar{
+    width: 100%;
+}
+
+#free-solo-2-demo{
+    height: 6vh;
+}
+
+.exploreBottomTitle{
+    font-size: 50%;
+    font-weight: normal;
+    position: relative;
+    top: -2.5vh; 
+}
+
+.exploreIcon-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 3vh;
+}
+
+#exploreIcon{
+    width: 250px;
+    animation: swing 3s infinite;
+}
+
+@keyframes swing{
+    0%{
+        transform: translateY(-3px);
+    }
+
+    50%{
+        transform: translateY(3px);
+    }
+
+    100%{
+        transform: translateY(-3px);
+    }
+}
+
+@media(max-width: 1060px){
+    #exploreIcon{
+        margin-left: -0.2%;
+    }
+}
+
+@media(max-width: 800px){
+    .exploreBottomTitle{
+        font-size: 42%;
+    }
+}
+
+@media(max-width: 725px){
+    .exploreSearchBar-container{
+        width: 80%;
+    }
+}
+
+@media(max-width: 530px){
+    .exploreTitle{
+        font-size: 80%;
+        position: relative;
+        top: -2vh;
+    }
+}
+
+@media(max-width: 530px){
+    .exploreTitle{
+        font-size: 80%;
+        position: relative;
+        top: -2vh;
+    }
+}
+
+@media(max-width: 420px){
+    .exploreTitle{
+        font-size: 70%;
+        position: relative;
+        top: -3vh;
+    }
+}

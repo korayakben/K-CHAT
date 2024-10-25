@@ -1,0 +1,138 @@
+.storiesBar-container{
+    background-color: #fff;
+    height: 103.4vh;
+    max-height: 103.4vh;
+    overflow: auto;
+    width: 350px;
+}
+
+.storiesBarTitle-container{
+    display: flex;
+}
+
+.storiesBar-titles{
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    width: 190px;
+}
+
+.storiesBar-bigTitle{
+    font-size: 140%;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.storiesBar-lilTitle{
+    opacity: 0.7;
+}
+
+.storiesBar-addIcon{
+    width: 160px;
+    display: flex;
+    align-items: center;
+}
+
+.storiesBar-addIcon > button{
+    border-style: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 60%;
+}
+
+.storiesBar-addIcon > button:hover{
+    background-color: rgb(211, 234, 255);
+    color:rgb(44, 115, 245);
+    transition: 1s;
+}
+
+.storiesBarDiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 3%;
+}
+
+.storiesBarPhoto{
+    width: 45%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.storiesBarPhoto:hover{
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.storiesPage-body{
+    display: flex;
+}
+
+.stBigPhoto-container{
+    display: flex;
+    flex: 1;
+    padding: 3%;
+    justify-content: center;
+    align-items: center;
+}
+
+.stBigPhoto{
+    border-radius: 7px;
+    width: 570px;
+    cursor: grab;
+}
+
+@media(max-width: 1061px){
+    .storiesBarDiv{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .stBigPhoto{
+        position: relative;
+        left: -5%;
+    }
+
+    .storiesBarPhoto{
+        width: 40%;
+        margin-left: -2%;
+    }
+}
+
+@media(max-width: 990px){
+    .storiesPage-body{
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+    }
+
+    .storiesBarTitle-container{
+        justify-content: center;
+    }
+
+    .storiesBar-container{
+        width: 570px;
+    }
+
+    .storiesBar-titles{
+        width: 70%;
+    }
+}
+
+@media(max-width: 900px){
+    .stBigPhoto{
+        margin-left: 10%;
+    }
+}
+
+@media(max-width: 640px){
+    .storiesBar-container, .stBigPhoto{
+        width: 100%;
+    }
+}
