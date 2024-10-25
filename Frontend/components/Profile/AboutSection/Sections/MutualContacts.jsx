@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { userList } from '../../../../src/utils/usersList';
+import { userList } from '../../../../src/listsUsed/usersList';
 import { truncateText } from '../../../../src/utils/truncateText';
 
 // Util function to cut the username

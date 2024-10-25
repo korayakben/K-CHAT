@@ -3,7 +3,7 @@ import "../../../public/profile.css"
 import UserSearchBar from './UserSearchBar'
 import UserDiv from './UserDiv'
 import UserTitle from './UserTitle'
-import { userList } from '../../../src/utils/usersList'
+import { userList } from '../../../src/listsUsed/usersList'
 
 function UsersBar() {
 

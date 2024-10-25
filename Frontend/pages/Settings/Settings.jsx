@@ -2,7 +2,7 @@ import React from 'react'
 import DrawerAppBar from '../../components/Chat/Navbar/Navbar'
 import SettingsCard from '../../components/Settings/MainSettings/SettingsCard'
 import SettingsTitles from '../../components/Settings/SettingsTitles'
-import { settingsCardList } from '../../src/utils/settingsCardList'
+import { settingsCardList } from '../../src/listsUsed/settingsCardList'
 
 function Settings() {
 

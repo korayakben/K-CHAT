@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { countries } from '../../src/utils/countriesList';
+import { countries } from '../../src/listsUsed/countriesList';
 
 export default function CountrySelect({ onChange }) {
   const handleChange = (event, newValue) => {

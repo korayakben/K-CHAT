@@ -1,5 +1,5 @@
 import React from 'react'
-import { userList } from '../../../src/utils/usersList'
+import { userList } from '../../../src/listsUsed/usersList'
 
 function UserTitle() {
 
