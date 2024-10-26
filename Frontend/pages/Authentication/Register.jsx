@@ -8,6 +8,9 @@ import { Link } from "react-router-dom"
 import TextField from '@mui/material/TextField';
 import GenderRadio from '../../components/Register/GenderRadio';
 import CountrySelect from '../../components/Register/CountrySelect';
+import { sendDatas } from '../../src/utils/sendFormDatas';
+import { isPasswordMatch } from '../../src/utils/isPasswordMatch';
+import { passwordLengthDetecter } from '../../src/utils/passwordLengthDetecter';
 
 
 function Register() {
@@ -22,11 +25,14 @@ function Register() {
         country: ''
     });
 
+    const [passLenghtWarning, setPassLenghtWarning] = useState(null);
+    const [passMatchWarning, setPassMatchWarning] = useState(null);
+
     useEffect(()=>{
         document.body.style.overflow = "auto"
     },[]);
 
-    const onChange = (e)=>{
+    const handleChange = (e)=>{
         const {name, value} = e.target;
         setFormData({
             ...formData,
@@ -34,10 +40,20 @@ function Register() {
         });
     }
 
+
     const handleSubmit = (e)=>{
-        e.preventDefault();
-        alert(formData);
-        console.log(formData);
+        passwordLengthDetecter(formData.password) && isPasswordMatch(formData.password, formData.passwordRepeat) ? sendDatas(formData) : null;
+    }
+
+
+    const passLengthWarner = ()=>{
+        passwordLengthDetecter(formData.password) ? setPassLenghtWarning(<span id='validPassword'>Nice Password</span>) : setPassLenghtWarning(<span id='invalidPassword'>Invalid Password</span>);
+    }
+
+    
+    const passMatchWarner = ()=>{
+        document.getElementById("passLengthWarner").style.display = "none"
+        isPasswordMatch(formData.password, formData.passwordRepeat) ? setPassMatchWarning(<span id="validMatching">Passwords correctly match :)</span>) : setPassMatchWarning(<span id="invalidMatching">Passwords do not match!</span>)
     }
     
   return (
@@ -45,29 +61,51 @@ function Register() {
         <div className='title'>K Chat Register</div>
         <div className='form-container'>
             <div id="form-title">Create Account</div>
-            <form action="" onSubmit={handleSubmit}>
+            <form action="" onSubmit={(e)=>{
+                e.preventDefault();
+                handleSubmit();
+                passwordLengthDetecter(formData.password) ? passMatchWarner() : null;
+            }}>
 
                 <div> 
-                    <Input type="text" title="Your Name" placeholder="yourname" name="name" onChange={onChange}/>
-                    <Input type="text" title="Surname" placeholder="surname" name="surname" onChange={onChange}/>
+                    <Input type="text" title="Your Name" placeholder="yourname" name="name" onChange={handleChange}/>
+                    <Input type="text" title="Surname" placeholder="surname" name="surname" onChange={handleChange}/>
                 </div>
+
+
+                <div style={{display: "flex", flexDirection: "column", gap: "0"}}>
+                    <div style={{fontSize: "90%", marginBottom: "7px"}}>Username:</div>
+                    <TextField className="outlined-basic" variant="outlined" type="text" placeholder='username' name="username" onChange={handleChange} required InputProps={{style:{height: "5vh"}}}/>
+                </div>
+
 
                 <div style={{display: "flex", flexDirection: "column", gap: "0"}}>
                     <div style={{fontSize: "90%", marginBottom: "7px"}}>Email:</div>
-                    <TextField className="outlined-basic" variant="outlined" type="email" placeholder='email' name="email" onChange={onChange} required InputProps={{style:{height: "5vh"}}}/>
+                    <TextField className="outlined-basic" variant="outlined" type="email" placeholder='email' name="email" onChange={handleChange} required InputProps={{style:{height: "5vh"}}}/>
                 </div>
 
                 <div>
-                    <Input type="password" title="Password" placeholder="password" name="password" onChange={onChange}/>
-                    <Input type="password" title="Password Repeat" placeholder="password again" name="passwordRepeat" onChange={onChange}/>
+                    <Input type="password" title="Password" placeholder="password" name="password" onChange={(e)=>{
+                        handleChange(e);
+                        passLengthWarner()
+                    }}/>
+                    <Input type="password" title="Password Repeat" placeholder="password again" name="passwordRepeat" onChange={handleChange}/>
+                </div>
+
+                <div className='passwordWarning-container' id="passLengthWarner">
+                    {passLenghtWarning}
+                </div>
+
+                <div className='passwordWarning-container'>
+                {passMatchWarning}
                 </div>
 
                 <div className='genderRadio-container'>
-                    <GenderRadio onChange={onChange}/>
+                    <GenderRadio onChange={handleChange}/>
                 </div>
                 
                 <div className='genderRadio-container'>
-                    <CountrySelect onChange={onChange}/>
+                    <CountrySelect onChange={handleChange}/>
                 </div>
 
 

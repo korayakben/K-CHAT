@@ -43,6 +43,7 @@ export default function CountrySelect({ onChange }) {
       }}
       renderInput={(params) => (
         <TextField
+          required
           {...params}
           placeholder="Choose a country"
           sx={{

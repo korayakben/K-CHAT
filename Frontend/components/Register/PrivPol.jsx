@@ -8,7 +8,7 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 function PrivPol() {
   return (
     <div className='priv-pol'>
-        <Checkbox {...label} /> 
+        <Checkbox {...label} required/> 
         <span>I agree with <Link to="/">privacy & policy terms</Link></span>
     </div>
   )

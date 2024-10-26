@@ -129,6 +129,18 @@ hr{
     width: 300px;
 }
 
+#validPassword, #validMatching{
+    color: green;
+}
+
+#invalidPassword, #invalidMatching{
+    color: red;
+}   
+
+.passwordWarning-container{
+    margin-top: -1rem;
+}
+
 
 @media(max-width: 750px){
     .form-container{
