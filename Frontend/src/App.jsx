@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createContext, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from '../pages/Home'
 import Register from '../pages/Authentication/Register'
@@ -14,26 +14,35 @@ import TermsnPolicies from '../pages/Settings/TermsnPolicies'
 import PersonalInfo from '../pages/Settings/PersonalInfo'
 import ContactPage from '../pages/Settings/ContactPage'
 import ExplorePage from '../pages/Explore/ExplorePage'
+import PrivateRouter from '../components/PrivateRouter'
+
+//Context API for Authentication
+export const Context = createContext();
 
 function App() {
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
-    <Routes>
-      <Route path="/" element={<Home/>}/>
-      <Route path="/home" element={<Home/>}/>
-      <Route path="/register" element={<Register/>}/>
-      <Route path="/login" element={<Login/>}/>
-      <Route path="/resetpass" element={<ResetPass/>}/>
-      <Route path="/chat" element={<ChatPage/>}/>
-      <Route path="/profile" element={<Profile/>}/>
-      <Route path="/stories" element={<StoriesPage/>}/>
-      <Route path="/settings" element={<Settings/>}/>
-      <Route path="/settings/privacy" element={<PrivSec/>}/>
-      <Route path="/settings/termspolicies" element={<TermsnPolicies/>}/>
-      <Route path="/settings/personal-info" element={<PersonalInfo/>}/>
-      <Route path="/settings/helpnsupport" element={<ContactPage/>}/>
-      <Route path="/explore" element={<ExplorePage/>}/>
-      <Route path="*" element={<NoPageFound/>}/>
-    </Routes>
+    <Context.Provider value={[isAuthenticated, setIsAuthenticated]}>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/home" element={<Home/>}/>
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/resetpass" element={<ResetPass/>}/>
+        <Route path="/chat" element={<PrivateRouter><ChatPage/></PrivateRouter>}/>
+        <Route path="/profile" element={<PrivateRouter><Profile/></PrivateRouter>}/>
+        <Route path="/stories" element={<PrivateRouter><StoriesPage/></PrivateRouter>}/>
+        <Route path="/settings" element={<PrivateRouter><Settings/></PrivateRouter>}/>
+        <Route path="/settings/privacy" element={<PrivateRouter><PrivSec/></PrivateRouter>}/>
+        <Route path="/settings/termspolicies" element={<PrivateRouter><TermsnPolicies/></PrivateRouter>}/>
+        <Route path="/settings/personal-info" element={<PrivateRouter><PersonalInfo/></PrivateRouter>}/>
+        <Route path="/settings/helpnsupport" element={<PrivateRouter><ContactPage/></PrivateRouter>}/>
+        <Route path="/explore" element={<PrivateRouter><ExplorePage/></PrivateRouter>}/>
+        <Route path="*" element={<NoPageFound/>}/>
+      </Routes>
+    </Context.Provider>
   )
 }
 

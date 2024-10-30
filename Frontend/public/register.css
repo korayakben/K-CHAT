@@ -12,6 +12,11 @@ a:hover{
     color:rgb(3, 3, 197);
 }
 
+.loginWarner{
+    color: red;
+    margin-top: -1rem;
+}
+
 
 @keyframes drop{
     from{

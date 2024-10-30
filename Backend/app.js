@@ -7,7 +7,8 @@ import { connectDb } from "./utils/database/connectDb.js";
 import axios from "axios";       
 import pg from "pg";
 import bcrypt from "bcrypt";
-import { createUser, bringAllUsers, deleteAllUsers } from "./utils/database/userModel.js";
+import { createUser } from "./utils/database/userModel.js";
+import createUserR from "./routes/userRoutes.js"
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -24,6 +25,7 @@ app.set('views', join(__dirname, 'views'));
 //Connects to the DB
 connectDb();
 
+//THE API ALREADY INCLUDES IT. :))
 app.post("/register", (req, res)=>{  
     try{
         const userInfoSet = req.body;
@@ -37,6 +39,8 @@ app.post("/register", (req, res)=>{
         res.status(500).json({ message: "An error occurred." });
     }
 })
+
+app.use("/", createUserR);
 
 
 const port = 3000;
