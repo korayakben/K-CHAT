@@ -6,6 +6,7 @@ import StrategyButtons from '../../components/Register/StrategyButtons';
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { Context } from '../../src/App';
+import { authenticator } from '../../src/utils/authenticator';
 
 function Login() {
 
@@ -38,26 +39,7 @@ function Login() {
     e.preventDefault();
     const {email, password} = loginForm;
 
-    try{
-      const isAuthenticated = await axios.post('http://localhost:3000/v1/login', {
-        email: email,
-        password: password
-      });
-  
-      const emailExists = isAuthenticated.data.email;
-      const isPasswordCorrect = isAuthenticated.data.password;
-  
-      if(emailExists){
-        isPasswordCorrect ? (setIsAuthenticated(true), navigate("/chat")) : (setIsAuthenticated(false), setEmailWarner(null), setPasswordWarner("Password is wrong"))
-      }
-      else{
-        setEmailWarner("User not found");
-      }
-    }
-    catch(err){
-      console.log(`An error occured while the user was loggin in.`);
-      setPasswordWarner("An error came up while logging in");
-    }
+    authenticator(email, password, setIsAuthenticated, setEmailWarner, setPasswordWarner, navigate);
     
   }
 
