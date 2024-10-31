@@ -33,13 +33,6 @@ const closeProfileSettings = ()=>{
 
 
 const drawerWidth = 240;
-// const navItems = [
-// <NavButton img={<MessageIcon/>} link="/chat"/>, 
-// <NavButton img={<AutoStoriesIcon/>} link="/stories"/>, 
-// <NavButton img={<PersonIcon/>} link="/profile"/>,
-// <NavButton img={<NotificationsIcon/>}/>,
-// <Avatar alt="profilePhoto" src="../../../public/images/userImages/1.jpg" onMouseOver={openProfileSettings}/>
-// ];
 
 const navItems = [
   <NavButton img={<MessageIcon/>} link="/chat"/>, 

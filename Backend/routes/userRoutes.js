@@ -1,5 +1,6 @@
 import express from "express";
 import {registerUser} from "../controllers/user/registerUser.js"
+import { loginUser } from "../controllers/user/loginUser.js";
 import { getAllUsers } from "../controllers/data/getAllUsers.js";
 import { getAllEmails } from "../controllers/data/getAllEmails.js";
 import { getAllUsernames } from "../controllers/data/getAllUsernames.js"
@@ -11,6 +12,9 @@ const router = express.Router();
 
 // Register user
 router.post("/v1/register", registerUser);
+
+// Login user
+router.post("/v1/login", loginUser);
 
 // Get all users
 router.get("/v1", getAllUsers);

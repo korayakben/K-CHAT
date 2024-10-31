@@ -32,30 +32,33 @@ function Login() {
             [name]: value
         });
   }
+  
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
     const {email, password} = loginForm;
+
+    try{
+      const isAuthenticated = await axios.post('http://localhost:3000/v1/login', {
+        email: email,
+        password: password
+      });
+  
+      const emailExists = isAuthenticated.data.email;
+      const isPasswordCorrect = isAuthenticated.data.password;
+  
+      if(emailExists){
+        isPasswordCorrect ? (setIsAuthenticated(true), navigate("/chat")) : (setIsAuthenticated(false), setEmailWarner(null), setPasswordWarner("Password is wrong"))
+      }
+      else{
+        setEmailWarner("User not found");
+      }
+    }
+    catch(err){
+      console.log(`An error occured while the user was loggin in.`);
+      setPasswordWarner("An error came up while logging in");
+    }
     
-      const emailChecker = await axios.get(`http://localhost:3000/v1/emailCheck?email=${email}`);
-
-      let emailExists = emailChecker.data.emailExistence;
-      let isPasswordCorrect = false;
-
-
-        if(emailExists){
-          const passwordChecker = await axios.get(`http://localhost:3000/v1/passwordCheck?email=${email}`);
-
-          setEmailWarner(null);
-
-          isPasswordCorrect = (password === passwordChecker.data) 
-
-          isPasswordCorrect ? (setIsAuthenticated(true), navigate("/chat")) : (setIsAuthenticated(false), setPasswordWarner("Password is wrong"));
-        }   
-        else{
-          setEmailWarner("User not found");
-        }
-
   }
 
   return (
