@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "../../public/register.css"
 import Input from '../../components/Register/Input'
 import BasicButton from '../../components/Register/Button';
@@ -11,19 +11,11 @@ import CountrySelect from '../../components/Register/CountrySelect';
 import { sendDatas } from '../../src/utils/sendFormDatas';
 import { isPasswordMatch } from '../../src/utils/isPasswordMatch';
 import { passwordLengthDetecter } from '../../src/utils/passwordLengthDetecter';
-
+import { Context } from '../../src/App';
 
 function Register() {
 
-    const [formData, setFormData] = useState({
-        name: '',
-        surname: '',
-        email: '',
-        password: '',
-        passwordRepeat: '',
-        gender: '',
-        country: ''
-    });
+    const [formData, setFormData] = useContext(Context);
 
     const [passLenghtWarning, setPassLenghtWarning] = useState(null);
     const [passMatchWarning, setPassMatchWarning] = useState(null);

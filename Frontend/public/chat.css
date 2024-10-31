@@ -48,12 +48,19 @@
 .nicks-container{
     display: flex;
     align-items: center;
-    width: 190px;
+    width: fit-content;
+}
+
+#username{
+    text-align: start;
+    padding-right: 10px;
+    width: fit-content;
 }
 
 #nickname{
     font-size: 80%;
     opacity: 0.6;
+    width: fit-content;
 }
 
 .contacts-container{

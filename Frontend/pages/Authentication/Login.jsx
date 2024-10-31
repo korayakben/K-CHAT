@@ -6,11 +6,12 @@ import StrategyButtons from '../../components/Register/StrategyButtons';
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { Context } from '../../src/App';
+import { loginContext } from '../../src/App';
 import { authenticator } from '../../src/utils/authenticator';
 
 function Login() {
 
-  const [isAuthenticated, setIsAuthenticated] = useContext(Context)
+  const [ isAuthenticated, setIsAuthenticated ] = useContext(Context);
   const navigate = useNavigate();
 
   const [emailWarner, setEmailWarner] = useState(null);
@@ -20,10 +21,8 @@ function Login() {
     document.body.style.overflowX = "hidden"
   },[]);
 
-  const [loginForm, setLoginForm] = useState({
-    email: "",
-    password: ""
-  });
+  const [loginForm, setLoginForm] = useContext(loginContext);
+  
 
   const handleChange = async (e)=>{
     const {name, value} = e.target;
@@ -33,14 +32,12 @@ function Login() {
             [name]: value
         });
   }
-  
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
     const {email, password} = loginForm;
 
     authenticator(email, password, setIsAuthenticated, setEmailWarner, setPasswordWarner, navigate);
-    
   }
 
   return (

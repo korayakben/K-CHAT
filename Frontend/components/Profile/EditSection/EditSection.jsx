@@ -4,7 +4,6 @@ import EditForm from './EditForm'
 import OAuthForm from './OAuth/OAuthForm'
 
 function EditSection() {
-
   return (
     <div className='editSection-container'>
         <div className='editSection'>

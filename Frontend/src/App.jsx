@@ -19,8 +19,25 @@ import Cookies from 'js-cookie';
 
 // Context API for Authentication
 export const Context = createContext();
+export const loginContext = createContext();
 
 function App() {
+
+  const [formData, setFormData] = useState({
+    name: '',
+    surname: '',
+    email: '',
+    password: '',
+    passwordRepeat: '',
+    gender: '',
+    country: ''
+});
+
+const [loginForm, setLoginForm] = useState({
+  email: "",
+  password: ""
+});
+
 
   const [isAuthenticated, setIsAuthenticated] = useState(
     Cookies.get('authCookie') === 'true'
@@ -31,7 +48,8 @@ function App() {
   }, [isAuthenticated]);
 
   return (
-    <Context.Provider value={[isAuthenticated, setIsAuthenticated]}>
+    <loginContext.Provider value={[loginForm, setLoginForm]}>
+        <Context.Provider value={[isAuthenticated, setIsAuthenticated, formData, setFormData]}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
@@ -50,6 +68,7 @@ function App() {
         <Route path="*" element={<NoPageFound />} />
       </Routes>
     </Context.Provider>
+    </loginContext.Provider>
   );
 }
 

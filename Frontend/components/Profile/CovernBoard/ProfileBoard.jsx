@@ -2,15 +2,15 @@ import React from 'react'
 import ProfilePhoto from './ProfilePhoto'
 import AddFriendButton from './AddFriendButton'
 
-function ProfileBoard() {
+function ProfileBoard({ name, username }) {
   return (
     <div className='profileBoard-container'>
         <div className='profileBoard'>
         <ProfilePhoto/>
         <div className='credentials-container'>
         <div className='nicks-container'>
-          <span id="username">Nina Dubois</span>
-          <span id="nickname">@nina_dubois</span>
+          <span id="username">{name}</span>
+          <span id="nickname">@{username}</span>
         </div>
 
         <div className='contacts-container'>
