@@ -31,12 +31,12 @@ function App() {
     passwordRepeat: '',
     gender: '',
     country: ''
-});
+  });
 
-const [loginForm, setLoginForm] = useState({
-  email: "",
-  password: ""
-});
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    password: ""
+  });
 
 
   const [isAuthenticated, setIsAuthenticated] = useState(

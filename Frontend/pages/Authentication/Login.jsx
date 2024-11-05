@@ -37,6 +37,8 @@ function Login() {
     e.preventDefault();
     const {email, password} = loginForm;
 
+    localStorage.setItem('userEmail', loginForm.email);
+
     authenticator(email, password, setIsAuthenticated, setEmailWarner, setPasswordWarner, navigate);
   }
 

@@ -3,7 +3,7 @@ import axios from "axios"
 export const loginUser = async (req, res)=>{
     try{
         const {email, password} = req.body;
-        const emailChecker = await axios.get(`http://localhost:3000/v1/emailCheck?email=${email}`);
+        const emailChecker = await axios.post(`http://localhost:3000/v1/emailCheck`,{email: email});
         let emailExists = emailChecker.data.emailExistence;
         let isPasswordCorrect = false;
 

@@ -4,7 +4,7 @@ import Input from '../../components/Register/Input'
 import BasicButton from '../../components/Register/Button';
 import PrivPol from '../../components/Register/PrivPol';
 import StrategyButtons from '../../components/Register/StrategyButtons';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import TextField from '@mui/material/TextField';
 import GenderRadio from '../../components/Register/GenderRadio';
 import CountrySelect from '../../components/Register/CountrySelect';
@@ -20,6 +20,10 @@ function Register() {
     const [passLenghtWarning, setPassLenghtWarning] = useState(null);
     const [passMatchWarning, setPassMatchWarning] = useState(null);
 
+    const [successWarner, setSuccessWarner] = useState(null);
+
+    const navigate = useNavigate();
+
     useEffect(()=>{
         document.body.style.overflow = "auto"
     },[]);
@@ -32,9 +36,12 @@ function Register() {
         });
     }
 
-
     const handleSubmit = (e)=>{
         passwordLengthDetecter(formData.password) && isPasswordMatch(formData.password, formData.passwordRepeat) ? sendDatas(formData) : null;
+
+        setSuccessWarner(<span style={{color: "green"}}>Registration is done. Welcome to K Chat</span>);
+
+        navigate("/login");
     }
 
 
@@ -102,6 +109,10 @@ function Register() {
 
 
                 <PrivPol/>
+
+                <div className='loginWarner'>
+                    {successWarner}
+                </div>
 
                 <div style={{display: "flex", flexDirection: "column", marginTop:"-0.5rem", position:"relative", top:"-0.7rem"}}>
                     <BasicButton bgColor="" color="#fff" textContent="Account Register"/>

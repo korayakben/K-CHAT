@@ -2,7 +2,7 @@ import { db } from "../utils/database/defineDb.js";
 
 export const checkEmailExists = async (req, res)=>{
     try{
-        const email = String(req.query.email);
+        const email = req.body.email;
         const query = "SELECT email FROM users WHERE email = $1";
         const emailData = await db.query(query, [email]);
       
