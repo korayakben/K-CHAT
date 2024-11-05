@@ -14,9 +14,9 @@ export default function GenderRadio({onChange}) {
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
       >
-        <FormControlLabel onChange={onChange} name="gender" value="female" control={<Radio />} label="Female" required/>
-        <FormControlLabel onChange={onChange} name="gender" value="male" control={<Radio />} label="Male" required/>
-        <FormControlLabel onChange={onChange} name="gender" value="other" control={<Radio />} label="Other" required/>
+        <FormControlLabel onChange={onChange} name="gender" value="Female" control={<Radio />} label="Female" required/>
+        <FormControlLabel onChange={onChange} name="gender" value="Male" control={<Radio />} label="Male" required/>
+        <FormControlLabel onChange={onChange} name="gender" value="Other" control={<Radio />} label="Other" required/>
     
       </RadioGroup>
     </FormControl>

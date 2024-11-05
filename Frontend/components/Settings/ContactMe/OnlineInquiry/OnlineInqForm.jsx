@@ -21,8 +21,6 @@ function OnlineInqForm() {
     message: ""
   });
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -59,6 +57,9 @@ function OnlineInqForm() {
     try{
       const dataForm = await axios.post("http://localhost:3000/v1/inquiryRequest", {inquiry: inq});
       setInquiryWarner(<span className='inquiryWarnerSuccess'>Your inquiry has successfully been sent</span>);
+      setTimeout(()=>{
+        window.location.reload();      
+      }, 1500);
     }
     catch(err){
       console.log(`An error occured while grabbing the inquiry. ${err}`);

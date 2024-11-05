@@ -8,19 +8,22 @@ import { Link, useNavigate } from "react-router-dom"
 import TextField from '@mui/material/TextField';
 import GenderRadio from '../../components/Register/GenderRadio';
 import CountrySelect from '../../components/Register/CountrySelect';
-import { sendDatas } from '../../src/utils/sendFormDatas';
-import { isPasswordMatch } from '../../src/utils/isPasswordMatch';
-import { passwordLengthDetecter } from '../../src/utils/passwordLengthDetecter';
+import { passwordLengthDetector } from '../../src/utils/passwordLengthDetector';
 import { Context } from '../../src/App';
+import axios from "axios"
+import { usernameChecker } from '../../src/utils/userAPI/usernameChecker';
+import { emailChecker } from '../../src/utils/userAPI/emailChecker';
 
 function Register() {
 
     const [formData, setFormData] = useContext(Context);
 
     const [passLenghtWarning, setPassLenghtWarning] = useState(null);
-    const [passMatchWarning, setPassMatchWarning] = useState(null);
 
     const [successWarner, setSuccessWarner] = useState(null);
+    const [emailWarner, setEmailWarner] = useState(null);
+    const [usernameWarner, setUsernameWarner] = useState(null);
+    const [passwordWarner, setPasswordWarner] = useState(null);
 
     const navigate = useNavigate();
 
@@ -36,35 +39,77 @@ function Register() {
         });
     }
 
-    const handleSubmit = (e)=>{
-        passwordLengthDetecter(formData.password) && isPasswordMatch(formData.password, formData.passwordRepeat) ? sendDatas(formData) : null;
 
-        setSuccessWarner(<span style={{color: "green"}}>Registration is done. Welcome to K Chat</span>);
+    const handleSubmit = async (e)=>{
+        e.preventDefault();
 
-        navigate("/login");
+        try{
+            const usernameExists = await usernameChecker(formData.username);
+            const emailExists = await emailChecker(formData.email);
+
+            if(!usernameExists){
+                if(!emailExists){
+                    const passwordLengthOk = passwordLengthDetector(formData.password);
+                    if(passwordLengthOk){
+                        if(formData.password === formData.passwordRepeat){
+                        await axios.post("http://localhost:3000/v1/register", {
+                            name: formData.name,
+                            surname: formData.surname,
+                            username: formData.username,
+                            email: formData.email,
+                            password: formData.password,
+                            gender: formData.gender,
+                            country: formData.country
+                        });
+
+                        setEmailWarner(null);
+                        setPasswordWarner(null);
+                        setUsernameWarner(null);
+
+                        setSuccessWarner(<span style={{color: "green"}}>Your registration is successfully done</span>);
+
+                        setTimeout(()=>{
+                            navigate("/login");
+                        }, 1500);
+                        }
+                        else{
+                        setEmailWarner(null);
+                        setUsernameWarner(null);
+                        setPasswordWarner(<span>Passwords do not match</span>);  
+                        }
+                    }
+                    else{
+                        setEmailWarner(null);
+                        setUsernameWarner(null);
+                        setPasswordWarner(<span>Password is too short</span>);  
+                    }
+                    
+                }
+                else{
+                    setPasswordWarner(null);
+                    setUsernameWarner(null);
+                    setEmailWarner(<span>This email is already taken</span>);
+                }
+            }
+            else{
+                setEmailWarner(null);
+                setPasswordWarner(null);
+                setUsernameWarner(<span>This username is already taken</span>);
+            }
+
+        }
+        catch(err){
+            setSuccessWarner(<span>An error occured in the registration process</span>);
+        }
     }
 
-
-    const passLengthWarner = ()=>{
-        passwordLengthDetecter(formData.password) ? setPassLenghtWarning(<span id='validPassword'>Nice Password</span>) : setPassLenghtWarning(<span id='invalidPassword'>Invalid Password</span>);
-    }
-
-    
-    const passMatchWarner = ()=>{
-        document.getElementById("passLengthWarner").style.display = "none"
-        isPasswordMatch(formData.password, formData.passwordRepeat) ? setPassMatchWarning(<span id="validMatching">Passwords correctly match :)</span>) : setPassMatchWarning(<span id="invalidMatching">Passwords do not match!</span>)
-    }
     
   return (
     <div className='register-container'>
         <div className='title'>K Chat Register</div>
         <div className='form-container'>
             <div id="form-title">Create Account</div>
-            <form action="" onSubmit={(e)=>{
-                e.preventDefault();
-                handleSubmit();
-                passwordLengthDetecter(formData.password) ? passMatchWarner() : null;
-            }}>
+            <form action="" onSubmit={handleSubmit}>
 
                 <div> 
                     <Input type="text" title="Your Name" placeholder="yourname" name="name" onChange={handleChange}/>
@@ -77,17 +122,22 @@ function Register() {
                     <TextField className="outlined-basic" variant="outlined" type="text" placeholder='username' name="username" onChange={handleChange} required InputProps={{style:{height: "5vh"}}}/>
                 </div>
 
+                <div className='loginWarner'>
+                    {usernameWarner}
+                </div>
+
 
                 <div style={{display: "flex", flexDirection: "column", gap: "0"}}>
                     <div style={{fontSize: "90%", marginBottom: "7px"}}>Email:</div>
                     <TextField className="outlined-basic" variant="outlined" type="email" placeholder='email' name="email" onChange={handleChange} required InputProps={{style:{height: "5vh"}}}/>
                 </div>
 
+                <div className='loginWarner'>
+                    {emailWarner}
+                </div>
+
                 <div>
-                    <Input type="password" title="Password" placeholder="password" name="password" onChange={(e)=>{
-                        handleChange(e);
-                        passLengthWarner()
-                    }}/>
+                    <Input type="password" title="Password" placeholder="password" name="password" onChange={handleChange}/>
                     <Input type="password" title="Password Repeat" placeholder="password again" name="passwordRepeat" onChange={handleChange}/>
                 </div>
 
@@ -95,8 +145,8 @@ function Register() {
                     {passLenghtWarning}
                 </div>
 
-                <div className='passwordWarning-container'>
-                {passMatchWarning}
+                <div className='loginWarner'>
+                {passwordWarner}
                 </div>
 
                 <div className='genderRadio-container'>

@@ -26,6 +26,7 @@ function App() {
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
+    username:'',
     email: '',
     password: '',
     passwordRepeat: '',
