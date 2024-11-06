@@ -5,7 +5,10 @@ import { fileURLToPath } from "url";
 import cors from "cors";   
 import { connectDb } from "./utils/database/connectDb.js";
 import helmet from "helmet"
-import createUserR from "./routes/userRoutes.js"
+import getRoutes from "./routes/getRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
+import putRoutes from "./routes/putRoutes.js";
+import deleteRoutes from "./routes/deleteRoutes.js";
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -23,7 +26,10 @@ app.set('views', join(__dirname, 'views'));
 //Connects to the DB
 connectDb();
 
-app.use("/", createUserR);
+app.use("/v1", getRoutes);
+app.use("/v1", postRoutes);
+app.use("/v1", putRoutes);
+app.use("/v1", deleteRoutes);
 
 const port = 3000;
 app.listen(port, ()=>{

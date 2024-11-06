@@ -116,7 +116,6 @@ function Register() {
                     <Input type="text" title="Surname" placeholder="surname" name="surname" onChange={handleChange}/>
                 </div>
 
-
                 <div style={{display: "flex", flexDirection: "column", gap: "0"}}>
                     <div style={{fontSize: "90%", marginBottom: "7px"}}>Username:</div>
                     <TextField className="outlined-basic" variant="outlined" type="text" placeholder='username' name="username" onChange={handleChange} required InputProps={{style:{height: "5vh"}}}/>
@@ -125,7 +124,6 @@ function Register() {
                 <div className='loginWarner'>
                     {usernameWarner}
                 </div>
-
 
                 <div style={{display: "flex", flexDirection: "column", gap: "0"}}>
                     <div style={{fontSize: "90%", marginBottom: "7px"}}>Email:</div>
@@ -156,7 +154,6 @@ function Register() {
                 <div className='genderRadio-container'>
                     <CountrySelect onChange={handleChange}/>
                 </div>
-
 
                 <PrivPol/>
 

@@ -2,7 +2,7 @@ import { db } from "../utils/database/defineDb.js";
 
 export const isPasswordCorrect = async (req, res)=>{
     try{
-        const email = String(req.query.email);
+        const email = req.query.email;
         const query = "SELECT password FROM users WHERE email = $1";
         const passwordData = await db.query(query, [email]);
         const thePassword = passwordData.rows[0].password; 
