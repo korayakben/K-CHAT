@@ -1,21 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import "../../../public/profile.css";
 import UserSearchBar from './UserSearchBar';
 import UserDiv from './UserDiv';
 import UserTitle from './UserTitle';
 import { userList } from '../../../src/listsUsed/usersList';
-import io from "socket.io-client"
+import { ChatContext } from '../../../src/App';
 
-const socket = io.connect("http://localhost:3000"); 
 
 function UsersBar() {
 
-  const handleClick = (img, name) => {
-    // console.log("Image Source:", img);
-    // console.log("User Name:", name);
+  const [userBarForm, setUserBarForm] = useContext(ChatContext);
 
-    socket.emit("takeHeader", {image: img, name: name});
+  const handleClick = (img, name) => {
+    console.log("Image Source:", img);
+    console.log("User Name:", name);
+    setUserBarForm({
+      img: img,
+      name: name
+    });
   };
+
+  useEffect(()=>{
+    // console.log("CONTEXT FORM");
+    // console.log(userBarForm);
+  },[userBarForm]);
 
   return (
     <div className='usersBar' id="usersBar">

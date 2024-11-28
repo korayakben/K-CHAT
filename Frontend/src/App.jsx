@@ -15,11 +15,13 @@ import PersonalInfo from '../pages/Settings/PersonalInfo';
 import ContactPage from '../pages/Settings/ContactPage';
 import ExplorePage from '../pages/Explore/ExplorePage';
 import PrivateRouter from '../components/PrivateRouter';
+import { userList } from './listsUsed/usersList';
 import Cookies from 'js-cookie';
 
 // Context APIs for Authentication
 export const Context = createContext();
 export const loginContext = createContext();
+export const ChatContext = createContext();
 
 function App() {
 
@@ -39,6 +41,11 @@ function App() {
     password: ""
   });
 
+  const [userBarForm, setUserBarForm] = useState({
+    img: userList[0].img,
+    name: userList[0].name
+  });
+
 
   const [isAuthenticated, setIsAuthenticated] = useState(
     Cookies.get('authCookie') === 'true'
@@ -50,6 +57,7 @@ function App() {
   }, [isAuthenticated]);
 
   return (
+    <ChatContext.Provider value={[userBarForm, setUserBarForm]}>
         <loginContext.Provider value={[loginForm, setLoginForm]}>
           <Context.Provider value={[isAuthenticated, setIsAuthenticated, formData, setFormData]}>
             <Routes>
@@ -71,6 +79,7 @@ function App() {
             </Routes>
       </Context.Provider>
       </loginContext.Provider>
+    </ChatContext.Provider>
   );
 }
 

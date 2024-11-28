@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import SearchIcon from '@mui/icons-material/Search';
 import io from "socket.io-client"
 import { userList } from '../../src/listsUsed/usersList';
-
-const socket = io.connect("http://localhost:3000"); 
+import { ChatContext } from '../../src/App';
 
 function ChatHeaderBck() {
+
+  const [userBarForm, setUserBarForm] = useContext(ChatContext);
 
   const [headerForm, setHeaderForm] = useState({
     image: userList[0].img,
     name: userList[0].name
   });
 
-  useEffect(()=>{
-    socket.on("putHeader", (data)=>{
-      console.log(data);  //works up until here tho
-      setHeaderForm(data);
-    });
-  }, []);
 
   useEffect(()=>{
     // console.log(headerForm);
@@ -28,10 +23,10 @@ function ChatHeaderBck() {
   return (
     <div className='chatHeader-bck'>
     <div className='chatHeaderbck-container'>
-        <img src={headerForm.image} />
+        <img src={userBarForm.img} />
 
         <div className='userStates'>
-            <span id="username-bck">{headerForm.name}</span>
+            <span id="username-bck">{userBarForm.name}</span>
             <span id="state-bck">Active</span>
         </div>
 
