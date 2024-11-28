@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import SendIcon from '@mui/icons-material/Send';
+import io from "socket.io-client"
+
+const socket = io.connect("http://localhost:3000"); 
 
 function ChatScreenBck() {
 
@@ -14,26 +17,28 @@ function ChatScreenBck() {
     input.value = "";
   }
 
-  function createMessageBalloon(){
-    const messageBalloons = document.getElementsByClassName("messageBalloonBck");
-    messageBalloons[0].style.display = "flex"
-  }
 
   function handleChange(e){
     setMessage(e.target.value);
   }
 
-  function handleClick(){
-    setShownMessage(message);
+  function sendMessage(){
+    // setShownMessage(message);
     clearInput();
-    createMessageBalloon();
+    socket.emit("sendChatMessage", message);
   }
+
+  useEffect(()=>{
+    socket.on("receiveChatMessage", (data)=>{
+      setShownMessage(data);  // My socket based message
+    });
+  },[socket]);
 
 
   return (
     <div className='chatScreenBck-container'>
       <div className='chatScreenBck'>
-      <span className='messageBalloonBck'>{ShownMessage}</span>
+      <span className='messageBalloonBck' style={{display: ShownMessage ? "flex" : "none"}}>{ShownMessage}</span>
       </div>
 
       <div className='inputBck-container'>
@@ -45,7 +50,7 @@ function ChatScreenBck() {
         </div>
 
           <input type="text" id="messageInput" onChange={handleChange}/>
-          <button className='inputIconbck' id="sendBtnBck" onClick={handleClick}><SendIcon/></button>
+          <button className='inputIconbck' id="sendBtnBck" onClick={sendMessage}><SendIcon/></button>
       </div>
       
     </div>

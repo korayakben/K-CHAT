@@ -48,6 +48,11 @@ io.on("connection", (socket)=>{
     socket.on("takeHeader", (data)=>{
         socket.broadcast.emit("putHeader", data);
     });
+
+    socket.on("sendChatMessage", (data)=>{
+        socket.emit("receiveChatMessage", data)
+        socket.broadcast.emit("receiveChatMessage", data)
+    });
 });
 
 const port = 3000;

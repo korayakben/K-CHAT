@@ -20,3 +20,26 @@ CREATE TABLE users (
     gender VARCHAR(10),           
     country VARCHAR(50)        
 );
+
+
+-- create_conversations_table.sql
+
+CREATE TABLE conversations (
+    id SERIAL PRIMARY KEY,
+    user1_id INT NOT NULL,       
+    user2_id INT NOT NULL,        
+    created_at TIMESTAMP DEFAULT NOW(), 
+    UNIQUE (user1_id, user2_id)    
+);
+
+
+-- create_messages_table.sql
+
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,         
+    conversation_id INT NOT NULL REFERENCES conversations(id) ON DELETE CASCADE, 
+    sender_id INT NOT NULL,      
+    content TEXT NOT NULL,        
+    timestamp TIMESTAMP DEFAULT NOW()
+);
+

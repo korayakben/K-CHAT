@@ -22,8 +22,7 @@ function ChatHeaderBck() {
   }, []);
 
   useEffect(()=>{
-    console.log("HEADER FORMMM");
-    console.log(headerForm);
+    // console.log(headerForm);
   }, [headerForm]);
   
   return (
