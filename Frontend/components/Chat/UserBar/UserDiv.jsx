@@ -40,23 +40,13 @@ function UserDiv(props) {
     }
   }, [message, windowWidth]);
 
-  
-
-  function handleClick(){
-    const userDiv = document.getElementById("userDiv");
-    const thePhoto = userDiv.firstChild.src;
-
-    console.log(thePhoto);
-    
-  }
-
 
   return (
-    <div className='userDiv' id="userDiv" onClick={handleClick}>
+    <div className='userDiv' id="userDiv" >
       <img src={props.img} alt="photo" className='userPhotos' />
       
       <div ref={divRef} style={{ display: "flex", flexDirection: "column", justifyContent: "center", paddingLeft: "2%" }}>
-        <span className='userDivName'>{props.name}</span>
+        <span className='userDivName' id="userDivName">{props.name}</span>
         <span className='truncatedMessage'>{truncatedMessage}</span>
 
       </div>
