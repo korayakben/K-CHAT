@@ -15,6 +15,7 @@ import PersonalInfo from '../pages/Settings/PersonalInfo';
 import ContactPage from '../pages/Settings/ContactPage';
 import ExplorePage from '../pages/Explore/ExplorePage';
 import PrivateRouter from '../components/PrivateRouter';
+import FriendProfile from '../pages/FriendProfile/FriendProfile';
 import { userList } from './listsUsed/usersList';
 import Cookies from 'js-cookie';
 
@@ -75,6 +76,7 @@ function App() {
               <Route path="/settings/personal-info" element={<PrivateRouter><PersonalInfo /></PrivateRouter>} />
               <Route path="/settings/helpnsupport" element={<PrivateRouter><ContactPage /></PrivateRouter>} />
               <Route path="/explore" element={<PrivateRouter><ExplorePage /></PrivateRouter>} />
+              <Route path="/profiles" element={<PrivateRouter><FriendProfile /></PrivateRouter>}/>
               <Route path="*" element={<NoPageFound />} />
             </Routes>
       </Context.Provider>

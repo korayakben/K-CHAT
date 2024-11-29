@@ -11,6 +11,7 @@ import putRoutes from "./routes/putRoutes.js";
 import deleteRoutes from "./routes/deleteRoutes.js";
 import http from "http";
 import { Server } from "socket.io"; 
+import axios from "axios"
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -45,6 +46,11 @@ app.use("/v1", deleteRoutes);
 
 io.on("connection", (socket)=>{
     // console.log(`User connected. ID => ${socket.id}`);
+
+    socket.on("searchUser", async (data)=>{
+        const userData = await axios.post("http://localhost:3000/v1/UserByUsername", {username: data});
+        socket.broadcast.emit("bringProfile", userData.data[0]);
+    });
 
     socket.on("sendChatMessage", (data)=>{
         socket.emit("receiveChatMessage", data)

@@ -5,6 +5,7 @@ import { inquiryGrabber } from "../controllers/user/inquiryGrabber.js";
 import { getUserByEmail } from "../controllers/data/getUserByEmail.js";
 import { checkEmailExists } from "../controllers/checkEmailExists.js";
 import { checkUsernameExists } from "../controllers/checkUsernameExists.js";
+import { getUserByUsername } from "../controllers/data/getUserByUsername.js";
 
 const postRoutes = express.Router();
 
@@ -19,6 +20,9 @@ postRoutes.post("/inquiryRequest", inquiryGrabber);
 
 // Get a user by email
 postRoutes.post("/userByEmail", getUserByEmail);
+
+//Get a user by username
+postRoutes.post("/userByUsername", getUserByUsername);
 
 // The Endpoint that checks out if the email entered exists or not
 postRoutes.post("/emailCheck", checkEmailExists);

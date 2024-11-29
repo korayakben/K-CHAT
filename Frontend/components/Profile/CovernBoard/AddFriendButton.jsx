@@ -10,9 +10,7 @@ function AddFriendButton() {
     }
 
   return (
-    <div className='addFriend-container'>
         <Button id='addFriend-btn' variant="contained" onClick={handleClick}>{buttonState}</Button>
-    </div>
   )
 }
 

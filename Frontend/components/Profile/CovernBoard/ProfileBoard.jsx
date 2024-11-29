@@ -3,6 +3,7 @@ import ProfilePhoto from './ProfilePhoto'
 import AddFriendButton from './AddFriendButton'
 
 function ProfileBoard({ name, username }) {
+
   return (
     <div className='profileBoard-container'>
         <div className='profileBoard'>
@@ -18,8 +19,10 @@ function ProfileBoard({ name, username }) {
             <span id="contactPoint" style={{opacity: "0.5"}}>•</span>
             <span id="mutual-count">8 mutual</span>
         </div>
-        </div>
+        </div >
+        <div className='addFriend-container' style={{display: username === localStorage.getItem("username") ? "none" : "flex"}}>
             <AddFriendButton/>
+        </div>
         </div>
     </div>
   )

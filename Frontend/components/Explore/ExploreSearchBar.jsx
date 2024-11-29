@@ -3,10 +3,15 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from "axios"
+import io from "socket.io-client"
+import { redirect, useNavigate } from 'react-router-dom';
+
+const socket = io.connect("http://localhost:3000");
 
 export default function ExploreSearchBar() {
 
   const [allUsers, setAllUsers] = React.useState([]);
+  const navigate = useNavigate();
 
   React.useEffect(async ()=>{
     try{
@@ -27,7 +32,8 @@ export default function ExploreSearchBar() {
         disableClearable
         options={allUsers.map((element) => element.username)}
         onChange={(event, value)=>{
-          alert(value)
+          socket.emit("searchUser", value);
+          window.location.href = "/profiles";
         }}
         renderInput={(params) => (
           <TextField
