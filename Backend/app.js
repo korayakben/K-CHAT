@@ -90,7 +90,6 @@ io.on("connection", (socket)=>{
             const lilNotify = await bringNotifications(data.data[i].notifid);
             notifications.push(lilNotify);
         }
-        
         socket.emit("usersNotifications", notifications);
     });
 
@@ -98,9 +97,7 @@ io.on("connection", (socket)=>{
         const buttonState = await axios.post("http://localhost:3000/v1/friendButtonState", data); 
         const status = buttonState.data.buttonState[0];
         socket.emit("friendBtnState", status);
-    });
-
-    
+    });  
 });
 
 const port = 3000;
