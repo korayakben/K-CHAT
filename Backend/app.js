@@ -50,7 +50,6 @@ app.use("/v1", deleteRoutes);
 
 io.on("connection", (socket)=>{
     // console.log(`User connected. ID => ${socket.id}`);
-
     socket.on("searchUser", async (data)=>{
         const userData = await axios.post("http://localhost:3000/v1/UserByUsername", {username: data});
         socket.broadcast.emit("bringProfile", userData.data[0]);
@@ -82,7 +81,6 @@ io.on("connection", (socket)=>{
         }
     });
 
-
     socket.on("bringNotifications", async (data)=>{
         const notifications = [];
         for(let i=0;i<data.length;i++){
@@ -91,7 +89,6 @@ io.on("connection", (socket)=>{
         }
         socket.emit("usersNotifications", notifications);
     });
-
 
     //Button State...
     socket.on("bringFriendBtnState", async (data)=>{
