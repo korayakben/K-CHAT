@@ -10,6 +10,7 @@ import { getAllNotifications } from "../controllers/data/getAllNotifications.js"
 import { addFriend } from "../controllers/notification/addFriend.js";
 import { bringFriendButtonState } from "../controllers/notification/bringFriendButtonState.js";
 import { acceptFriend } from "../controllers/notification/acceptFriend.js";
+import { areFriends } from "../controllers/notification/areFriends.js";
 
 const postRoutes = express.Router();
 
@@ -45,5 +46,8 @@ postRoutes.post("/friendButtonState", bringFriendButtonState);
 
 // The Endpoint that accepts the friend and stores in the db
 postRoutes.post("/acceptFriend", acceptFriend);
+
+// Then Endpoint that checks if the two are friends or not
+postRoutes.post("/areFriends", areFriends);
 
 export default postRoutes;

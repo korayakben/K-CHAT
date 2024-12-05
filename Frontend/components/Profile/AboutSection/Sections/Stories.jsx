@@ -11,7 +11,6 @@ function Stories() {
           <StoryTitle/>
           <StoryBar/>
         </div>
-
         <BigStory/>
     </div>
   )

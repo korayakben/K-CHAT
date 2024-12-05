@@ -7,17 +7,14 @@ const socket = io.connect('http://localhost:3000');
 
 function AddFriendButton() {
 
+  const [addButtonState, setAddButtonState] = useState("Add Friend");
+
+  const savedState = localStorage.getItem("buttonStatus");
+
   const clickedUser = JSON.parse(localStorage.getItem('broughtUsername')).username;
 
   const whoClicked = localStorage.getItem('username');
 
-  const defaultState = JSON.parse(localStorage.getItem("friendList"))[clickedUser];
-
-  const [buttonState, setButtonState] = useState(defaultState ||  "ADD FRIEND");
-
-  const [friendsList, setFriendsList] = useState(
-    JSON.parse(localStorage.getItem('friendList'))
-  );
 
   const handleClick = async () => {
     socket.emit('bringFriendBtnState', {
@@ -25,13 +22,11 @@ function AddFriendButton() {
       to_username: clickedUser,
     });
 
+    addButtonState === "Add Friend" ? setAddButtonState("Requested...") : setAddButtonState("Friend :)");
+
     // Notification sending...
     socket.emit('sendFriendship', { from: whoClicked, to: clickedUser });
 
-    socket.emit("getCredentials", {
-      fromUser: whoClicked,
-      toUser: clickedUser
-    });
 
     await axios.post('http://localhost:3000/v1/addfriend', {
       from_username: whoClicked,
@@ -40,29 +35,48 @@ function AddFriendButton() {
 
   };
 
-  useEffect(() => {
-    socket.on('friendBtnState', (data) => {
-      setButtonState(data.status);
+  useEffect(async () => {
 
-      setFriendsList((prevFriendsList) => {
-        const updatedList = {
-          ...prevFriendsList,
-          [clickedUser]: data.status,
-        };
-        localStorage.setItem('friendList', JSON.stringify(updatedList));
-        return updatedList;
-      });
+    const areFriendsData = await axios.post("http://localhost:3000/v1/areFriends", {
+      username: whoClicked,
+      friendUsername: clickedUser
     });
+
+    const areFriends = areFriendsData.data
+
+    if(areFriends){
+      setAddButtonState("FRIEND :)");
+      localStorage.setItem("buttonStatus", "FRIEND :)");
+    }
+    else{
+      socket.emit('bringFriendBtnState', {
+        from_username: whoClicked,
+        to_username: clickedUser,
+      });
+  
+      socket.on('friendBtnState', (data) => {
+  
+        if(data == undefined){
+          
+          setAddButtonState("ADD FRIEND");
+          localStorage.setItem("buttonStatus", "Add Friend");
+        }
+        
+        setAddButtonState(data.status);
+        localStorage.setItem("buttonStatus", data.status);
+    }
+      )
+    };
 
     return () => {
       // Clean the socket listeners
       socket.off('friendBtnState');
     };
-  }, [clickedUser]);
+  }, []);
 
   return (
     <Button id="addFriend-btn" variant="contained" onClick={handleClick}>
-      {buttonState}
+      {savedState || addButtonState}
     </Button>
   );
 }

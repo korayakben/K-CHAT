@@ -61,9 +61,11 @@ io.on("connection", (socket)=>{
         socket.broadcast.emit("receiveChatMessage", data)
     });
 
+    // Friendship sending...
     socket.on("sendFriendship", async (data)=>{
         const friendship_notification = sendFriendship(data.from, data.to);
 
+        //Prevention against notification duplication
         const isNotificationExist = await notificationExists(data.from, data.to, friendship_notification.type);
 
         if(!isNotificationExist){
@@ -80,9 +82,6 @@ io.on("connection", (socket)=>{
         }
     });
 
-    socket.on("getCredentials", (data)=>{
-        socket.emit("credentialsForChoice", data);
-    });
 
     socket.on("bringNotifications", async (data)=>{
         const notifications = [];
@@ -93,9 +92,13 @@ io.on("connection", (socket)=>{
         socket.emit("usersNotifications", notifications);
     });
 
+
+    //Button State...
     socket.on("bringFriendBtnState", async (data)=>{
         const buttonState = await axios.post("http://localhost:3000/v1/friendButtonState", data); 
         const status = buttonState.data.buttonState[0];
+        // console.log("STATUSSS");
+        // console.log(status);
         socket.emit("friendBtnState", status);
     });  
 });

@@ -19,6 +19,15 @@ function NotifChoiceBtn({index}) {
       acceptedUser: acceptedUser
     });
 
+    const response = await axios.delete(`http://localhost:3000/v1/notifications`, {
+      data: {
+        notifArr: JSON.parse(localStorage.getItem("notifications")),
+        index: index
+      }
+    });
+    
+    localStorage.setItem("notifications", JSON.stringify(response.data.newArr));
+
     navigate("/notifications");
   }
 
