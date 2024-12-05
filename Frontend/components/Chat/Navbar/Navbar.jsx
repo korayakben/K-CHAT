@@ -38,13 +38,12 @@ const navItems = [
   <NavButton img={<MessageIcon/>} link="/chat"/>, 
   <NavButton img={<AutoStoriesIcon/>} link="/stories"/>, 
   <NavButton img={<PersonIcon/>} link="/profile"/>,
-  <NavButton img={<NotificationsIcon/>}/>,
+  <NavButton img={<NotificationsIcon/>} link="/notifications"/>,
   <div className='avatarnsettingsDiv'>
     <Avatar alt="profilePhoto" src="../../../public/images/userImages/1.jpg" onMouseOver={openProfileSettings} onMouseOut={closeProfileSettings}/>
     <SettingsBar/>
   </div>
   ];
-
 
 
 const sidebarItems = [

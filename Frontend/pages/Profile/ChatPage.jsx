@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import "../public/profile.css"
-import PrimarySearchAppBar from "../components/Chat/Navbar/Navbar"
-import UsersBar from '../components/Chat/UserBar/UsersBar'
-import ChatHeaderBck from '../components/Chat/ChatHeaderBck'
-import ChatScreenBck from '../components/Chat/ChatScreenBck'
+import "../../public/profile.css"
+import PrimarySearchAppBar from "../../components/Chat/Navbar/Navbar"
+import UsersBar from '../../components/Chat/UserBar/UsersBar'
+import ChatHeaderBck from '../../components/Chat/ChatHeaderBck'
+import ChatScreenBck from '../../components/Chat/ChatScreenBck'
 
 
 function ChatPage() {

@@ -4,7 +4,6 @@ import Input from '../../components/Register/Input';
 import BasicButton from '../../components/Register/Button';
 import StrategyButtons from '../../components/Register/StrategyButtons';
 import { Link, useNavigate } from "react-router-dom"
-import axios from "axios"
 import { Context } from '../../src/App';
 import { loginContext } from '../../src/App';
 import { authenticator } from '../../src/utils/authenticator';

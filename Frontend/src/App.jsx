@@ -5,7 +5,7 @@ import Register from '../pages/Authentication/Register';
 import Login from '../pages/Authentication/Login';
 import NoPageFound from '../pages/NoPageFound';
 import ResetPass from '../pages/Authentication/ResetPass';
-import ChatPage from '../pages/ChatPage';
+import ChatPage from '../pages/Profile/ChatPage';
 import Profile from '../pages/Profile/Profile';
 import StoriesPage from '../pages/Profile/StoriesPage';
 import Settings from '../pages/Settings/Settings';
@@ -16,6 +16,7 @@ import ContactPage from '../pages/Settings/ContactPage';
 import ExplorePage from '../pages/Explore/ExplorePage';
 import PrivateRouter from '../components/PrivateRouter';
 import FriendProfile from '../pages/FriendProfile/FriendProfile';
+import NotificationPage from '../pages/Profile/NotificationPage';
 import { userList } from './listsUsed/usersList';
 import Cookies from 'js-cookie';
 
@@ -77,6 +78,7 @@ function App() {
               <Route path="/settings/helpnsupport" element={<PrivateRouter><ContactPage /></PrivateRouter>} />
               <Route path="/explore" element={<PrivateRouter><ExplorePage /></PrivateRouter>} />
               <Route path="/profiles" element={<PrivateRouter><FriendProfile /></PrivateRouter>}/>
+              <Route path="/notifications" element={<PrivateRouter><NotificationPage/></PrivateRouter>}/>
               <Route path="*" element={<NoPageFound />} />
             </Routes>
       </Context.Provider>

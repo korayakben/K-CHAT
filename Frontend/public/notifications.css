@@ -1,0 +1,208 @@
+body{
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.notif-container{
+    margin-top: 4vh;
+}
+
+.notifHeader-container{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 200%;
+    color: #434343;
+}
+
+hr{
+    width: 50%;
+    background-color: #606060;
+}
+
+.notifBody-container{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    background-color: #fff;
+    padding: 1%;
+}
+
+.notifUser-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 30%;
+}
+
+.notifUser-container > a{
+    width: 50%;
+    display: flex;
+    justify-content: end;
+    margin-left: -40%;
+}
+
+.notif-img{
+    width: 26%;
+    border-radius: 50%;
+}
+
+.userInfos-container{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.notif-name{
+    color: #000;
+    transition: 1s;
+}
+
+.notif-name:hover{
+    color: grey;
+}
+
+.notif-username{
+    font-size: 80%;
+    opacity: 0.7;
+}
+
+.notifRouter-container{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.notifRouter-container > Button{
+    display: flex;
+    gap: 0.5rem;
+    background-color: #33a9d4;
+    box-shadow: none;
+    transition: 1s;
+}
+
+.notifRouter-container > Button:hover{
+    box-shadow: none;
+    background-color: #49c6f3;
+    transition: 1s;
+}
+
+.notifCounter-container{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+#notifCounter{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 140%;
+    background-color: #33a9d4;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff; 
+}
+
+.choiceBtn-container{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.choiceBtn-container > Button{
+    box-shadow: none;
+}
+
+.notifications-container{
+    margin-top: 1vh;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 2vh;
+    margin-bottom: 5vh;
+}
+
+#noNotifications{
+    font-size: 120%;
+}
+
+.notifications{
+    width: 100%;
+    padding: 1.2%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.notifType{
+    background-color: rgb(34, 195, 34);
+    color: #fff;
+    width: 10%;
+    padding: 0.7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 90%;
+}
+
+.notifTopic{
+    font-weight: 600;
+    font-size: 90%;
+}
+
+.notifPerson{
+    font-size: 85%;
+    color: grey;
+}
+
+#deleteNotif-btn{
+    background-color: red;
+    box-shadow: none;
+    transition: 1s;
+    height: 40px;
+    width: 40px;
+    border-radius: 3px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: none;  
+    cursor: pointer; 
+}
+
+#deleteNotif-btn:hover{
+    background-color: rgb(231, 16, 16);
+}
+
+.notification-holder{
+    background-color: #fff;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    padding-left: 2%;
+    gap: 1rem;
+}
+
+.notifDate{
+    padding: 1%;
+    width: 40%;
+    font-size: 80%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 0.5rem;
+    color: grey;
+    position: relative;
+    left: -2%;
+}

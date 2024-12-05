@@ -12,6 +12,10 @@ import deleteRoutes from "./routes/deleteRoutes.js";
 import http from "http";
 import { Server } from "socket.io"; 
 import axios from "axios"
+import { sendFriendship } from "./utils/notification/sendFriendship.js";
+import { storeNotificationinDb } from "./utils/notification/storeNotification.js";
+import { bringNotifications } from "./utils/notification/bringNotifications.js";
+import { notificationExists } from "./controllers/notificationExists.js";
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -56,6 +60,47 @@ io.on("connection", (socket)=>{
         socket.emit("receiveChatMessage", data)
         socket.broadcast.emit("receiveChatMessage", data)
     });
+
+    socket.on("sendFriendship", async (data)=>{
+        const friendship_notification = sendFriendship(data.from, data.to);
+
+        const isNotificationExist = await notificationExists(data.from, data.to, friendship_notification.type);
+
+        if(!isNotificationExist){
+            storeNotificationinDb(
+                friendship_notification.type,
+                friendship_notification.topic,
+                friendship_notification.content,
+                friendship_notification.date,
+                data.from,
+                data.to
+            );
+    
+            socket.emit("getFriendData", friendship_notification);
+        }
+    });
+
+    socket.on("getCredentials", (data)=>{
+        socket.emit("credentialsForChoice", data);
+    });
+
+    socket.on("bringNotifications", async (data)=>{
+        const notifications = [];
+        for(let i=0;i<data.length;i++){
+            const lilNotify = await bringNotifications(data.data[i].notifid);
+            notifications.push(lilNotify);
+        }
+        
+        socket.emit("usersNotifications", notifications);
+    });
+
+    socket.on("bringFriendBtnState", async (data)=>{
+        const buttonState = await axios.post("http://localhost:3000/v1/friendButtonState", data); 
+        const status = buttonState.data.buttonState[0];
+        socket.emit("friendBtnState", status);
+    });
+
+    
 });
 
 const port = 3000;
