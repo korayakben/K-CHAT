@@ -16,11 +16,13 @@ function NotifChoiceBtn({ index, type }) {
     // Adding the friend into the DB...
     const acceptedUser = JSON.parse(localStorage.getItem("notifications"))[index][0].from_username;
     
+    // The friendship is being added into the db...
     await axios.post("http://localhost:3000/v1/acceptFriend", {
       acceptingUser: acceptingUser,
       acceptedUser: acceptedUser
     });
 
+    // Deleting the notification...
     const response = await axios.delete(`http://localhost:3000/v1/notifications`, {
       data: {
         notifArr: JSON.parse(localStorage.getItem("notifications")),
@@ -28,8 +30,8 @@ function NotifChoiceBtn({ index, type }) {
       }
     });
     
+    // Updating the notification storage...
     localStorage.setItem("notifications", JSON.stringify(response.data.newArr));
-
 
     // Sending acceptance notification to the accepted user...
     socket.emit("acceptanceNotification", {

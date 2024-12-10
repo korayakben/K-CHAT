@@ -3,13 +3,23 @@ import DrawerAppBar from '../../components/Chat/Navbar/Navbar';
 import CovernBoard from '../../components/Profile/CovernBoard';
 import FriendAboutBar from '../../components/FriendProfile/FriendAboutBar';
 import io from "socket.io-client";
+import axios from 'axios';
 
 const socket = io.connect("http://localhost:3000");
 
 function FriendProfile() {
     const [broughtUsername, setBroughtUsername] = useState("");
+    const searchedUser = JSON.parse(localStorage.getItem("broughtUsername")).username;
 
-    useEffect(() => {
+    console.log(searchedUser);
+
+    useEffect( async() => {
+
+        const contactNumberData = await axios.post("http://localhost:3000/v1/bringFriends", {username: searchedUser});
+
+        const contactNumber = contactNumberData.data.length;
+        localStorage.setItem("contactNumber", contactNumber);
+
         // Load initial data from Local Storage
         const savedUsername = localStorage.getItem("broughtUsername");
         if (savedUsername) {
@@ -22,6 +32,7 @@ function FriendProfile() {
             localStorage.setItem("broughtUsername", JSON.stringify(data)); 
             console.log("Profile data received:", data);
         });
+
 
         return () => {
             socket.off("bringProfile");

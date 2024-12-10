@@ -22,40 +22,46 @@ import Avatar from '@mui/material/Avatar';
 import "../../../public/images/userImages/1.jpg"
 import SettingsBar from '../SettingsBar';
 import { Link } from "react-router-dom"
+import { Context } from '../../../src/App';
 
-const openProfileSettings = ()=>{
-  document.getElementById("settingsBar-container").style.display = "flex";
-}
-
-const closeProfileSettings = ()=>{
-  document.getElementById("settingsBar-container").style.display = "none";
-}
-
-
-const drawerWidth = 240;
-
-const navItems = [
-  <NavButton img={<MessageIcon/>} link="/chat"/>, 
-  <NavButton img={<AutoStoriesIcon/>} link="/stories"/>, 
-  <NavButton img={<PersonIcon/>} link="/profile"/>,
-  <NavButton img={<NotificationsIcon/>} link="/notifications"/>,
-  <div className='avatarnsettingsDiv'>
-    <Avatar alt="profilePhoto" src="../../../public/images/userImages/1.jpg" onMouseOver={openProfileSettings} onMouseOut={closeProfileSettings}/>
-    <SettingsBar/>
-  </div>
-  ];
-
-
-const sidebarItems = [
-    <Link to="/explore" className='sidebarDirectors'>Explore</Link>,
-    <Link to="/chat" className='sidebarDirectors'>Chat</Link>, 
-    <Link to="/profile" className='sidebarDirectors'>Profile</Link>, 
-    <Link to="/stories" className='sidebarDirectors'>Stories</Link>, 
-    <Link to="/notifications" className='sidebarDirectors'>Notifications</Link>, 
-    <Link to="/settings" className='sidebarDirectors'>Settings</Link>
-]
 
 function DrawerAppBar(props) {
+
+  const openProfileSettings = ()=>{
+    document.getElementById("settingsBar-container").style.display = "flex";
+  }
+  
+  const closeProfileSettings = ()=>{
+    document.getElementById("settingsBar-container").style.display = "none";
+  }
+  
+  const [isAuthenticated, setIsAuthenticated] = React.useContext(Context);
+
+  const drawerWidth = 240;
+  
+  const navItems = [
+    <NavButton img={<MessageIcon/>} link="/chat"/>, 
+    <NavButton img={<AutoStoriesIcon/>} link="/stories"/>, 
+    <NavButton img={<PersonIcon/>} link="/profile"/>,
+    <NavButton img={<NotificationsIcon/>} link="/notifications"/>,
+    <div className='avatarnsettingsDiv'>
+      <Avatar alt="profilePhoto" src="../../../public/images/userImages/1.jpg" onMouseOver={openProfileSettings} onMouseOut={closeProfileSettings}/>
+      <SettingsBar/>
+    </div>
+    ];
+  
+  
+  const sidebarItems = [
+      <Link to="/explore" className='sidebarDirectors'>Explore</Link>,
+      <Link to="/chat" className='sidebarDirectors'>Chat</Link>, 
+      <Link to="/profile" className='sidebarDirectors'>Profile</Link>, 
+      <Link to="/stories" className='sidebarDirectors'>Stories</Link>, 
+      <Link to="/notifications" className='sidebarDirectors'>Notifications</Link>, 
+      <Link to="/settings" className='sidebarDirectors'>Settings</Link>,
+      <Link onClick={()=>setIsAuthenticated(false)} className='sidebarDirectors'>Log Out</Link>
+  ]
+
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -88,6 +94,7 @@ function DrawerAppBar(props) {
   },[]);
 
   return (
+    
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar component="nav" id="navbar">
@@ -106,7 +113,7 @@ function DrawerAppBar(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            <Link to="/explore" id="nav-title"> <img id="navbarIcon" src="../public/icons/chatCover.png" alt="chat" /> Kerem Chat</Link>
+            <Link to="/explore" id="nav-title"> <img id="navbarIcon" src="../public/icons/chatCover.png" alt="chat" />K Chat</Link>
           </Typography>
           <Box id="navIcon-container" sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item, index) => {

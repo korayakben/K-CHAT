@@ -116,10 +116,9 @@ io.on("connection", (socket)=>{
                 data.acceptingUser,
                 data.acceptedUser
             );
-    
-            // socket.emit("getFriendData", notification);
         }
     });
+
 });
 
 const port = 3000;
