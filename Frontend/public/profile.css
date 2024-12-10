@@ -121,23 +121,56 @@
     display: flex;
 }
 
-.chatHeader-container{
-    background-color: #fff;
-    display: flex;
-    height: 13vh;
-    z-index: 1;
-    position: absolute;
-    width: 77%;
-}
-
 .headerPhoto{
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 4%;
+}
 
+.addUser-container{
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+}
 
+#addUserPhoto{
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes addUser {
+    0%{
+        transform: translateY(-5px);
+    }
+
+    50%{
+        transform: translateY(0);
+    }
+
+    100%{
+        transform: translateY(-5px);
+    }
+}
+
+#addUserPhoto > img{
+    width: 80%;
+}
+
+#addUserLink{
+    color: #000;
+    font-size: 120%;
+    transition: 1s;
+    animation: addUser 2s infinite;
+}
+
+#addUserLink:hover{
+    color: grey ;
+    transition: 1s;
 }
 
 .headerPhoto > img{
@@ -188,18 +221,6 @@
     background-color: rgb(211, 234, 255);
     color:rgb(44, 115, 245);
     transition: 1s;
-}
-
-.chatScreen-container{
-    background-color: transparent;
-    height: 77vh;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    width: 263%;
-    position: relative;
-    top:6rem;
-    
 }
 
 .messageField-container{
@@ -268,10 +289,6 @@
     color:rgb(162, 162, 162);
     font-weight: 600;
 
-}
-
-.chatBody{
-    display: flex;
 }
 
 #uploadFileButton{

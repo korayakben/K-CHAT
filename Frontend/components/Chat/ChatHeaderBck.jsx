@@ -2,23 +2,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import SearchIcon from '@mui/icons-material/Search';
-import io from "socket.io-client"
 import { userList } from '../../src/listsUsed/usersList';
 import { ChatContext } from '../../src/App';
+import axios from 'axios';
 
 function ChatHeaderBck() {
 
   const [userBarForm, setUserBarForm] = useContext(ChatContext);
-
-  const [headerForm, setHeaderForm] = useState({
-    image: userList[0].img,
-    name: userList[0].name
-  });
-
-
-  useEffect(()=>{
-    // console.log(headerForm);
-  }, [headerForm]);
   
   return (
     <div className='chatHeader-bck'>
