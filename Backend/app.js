@@ -16,6 +16,7 @@ import { sendFriendship } from "./utils/notification/sendFriendship.js";
 import { storeNotificationinDb } from "./utils/notification/storeNotification.js";
 import { bringNotifications } from "./utils/notification/bringNotifications.js";
 import { notificationExists } from "./controllers/notificationExists.js";
+import { acceptanceNotification } from "./utils/notification/acceptanceNotification.js";
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -64,10 +65,10 @@ io.on("connection", (socket)=>{
     socket.on("sendFriendship", async (data)=>{
         const friendship_notification = sendFriendship(data.from, data.to);
 
-        //Prevention against notification duplication
-        const isNotificationExist = await notificationExists(data.from, data.to, friendship_notification.type);
+        // Prevention against notification duplication
+        const notificationExistence = await notificationExists(data.from, data.to, friendship_notification.type);
 
-        if(!isNotificationExist){
+        if(!notificationExistence){
             storeNotificationinDb(
                 friendship_notification.type,
                 friendship_notification.topic,
@@ -90,7 +91,7 @@ io.on("connection", (socket)=>{
         socket.emit("usersNotifications", notifications);
     });
 
-    //Button State...
+    // Button State...
     socket.on("bringFriendBtnState", async (data)=>{
         const buttonState = await axios.post("http://localhost:3000/v1/friendButtonState", data); 
         const status = buttonState.data.buttonState[0];
@@ -98,6 +99,27 @@ io.on("connection", (socket)=>{
         // console.log(status);
         socket.emit("friendBtnState", status);
     });  
+
+    //Acceptance Notification
+    socket.on("acceptanceNotification", async (data)=>{
+        const notification = acceptanceNotification(data.acceptingUser, data.acceptedUser);
+
+        // Prevention against notification duplication
+        const notificationExistence = await notificationExists(data.acceptingUser, data.acceptedUser, notification.type)
+
+        if(!notificationExistence){
+            storeNotificationinDb(
+                notification.type,
+                notification.topic,
+                notification.content,
+                notification.date,
+                data.acceptingUser,
+                data.acceptedUser
+            );
+    
+            // socket.emit("getFriendData", notification);
+        }
+    });
 });
 
 const port = 3000;

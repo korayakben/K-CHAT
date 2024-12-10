@@ -2,9 +2,11 @@ import React, { useEffect } from 'react'
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { io } from 'socket.io-client';
 
+const socket = io.connect("http://localhost:3000");
 
-function NotifChoiceBtn({index}) {
+function NotifChoiceBtn({ index, type }) {
 
   const navigate = useNavigate();
 
@@ -28,6 +30,13 @@ function NotifChoiceBtn({index}) {
     
     localStorage.setItem("notifications", JSON.stringify(response.data.newArr));
 
+
+    // Sending acceptance notification to the accepted user...
+    socket.emit("acceptanceNotification", {
+      acceptedUser: acceptedUser,
+      acceptingUser: acceptingUser
+    });
+
     navigate("/notifications");
   }
 
@@ -45,7 +54,9 @@ function NotifChoiceBtn({index}) {
   }
 
   return (
-    <div className='choiceBtn-container'>
+    <div className='choiceBtn-container' style={{display: 
+      type === "Friendship" ? "flex" : "none"
+    }}>
         <Button variant="contained" style={{backgroundColor: "rgb(4, 190, 4)"}} onClick={acceptFriend}>Accept</Button>
         <Button variant="contained" style={{backgroundColor: "rgb(215, 8, 8)"}} onClick={rejectFriend}>Reject</Button>
     </div>

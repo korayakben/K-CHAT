@@ -47,7 +47,7 @@ postRoutes.post("/friendButtonState", bringFriendButtonState);
 // The Endpoint that accepts the friend and stores in the db
 postRoutes.post("/acceptFriend", acceptFriend);
 
-// Then Endpoint that checks if the two are friends or not
+// The Endpoint that checks if the two are friends or not
 postRoutes.post("/areFriends", areFriends);
 
 export default postRoutes;

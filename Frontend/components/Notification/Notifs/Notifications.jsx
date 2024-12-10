@@ -67,7 +67,7 @@ function Notifications() {
                 <NotifType type={element[0].type}/>
                 <NotifTopic topic={element[0].title}/>
                 <NotifContent content={element[0].content}/>
-                <NotifChoiceBtn index={index}/>
+                <NotifChoiceBtn index={index} type={element[0].type}/>
               </div>
               <NotifDate date={element[0].createdat}/>
       </div>

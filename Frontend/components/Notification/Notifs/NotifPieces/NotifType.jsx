@@ -1,8 +1,17 @@
 import React from 'react'
 
 function NotifType({ type }) {
+
+  const notificationColorist = (typeValue)=>{
+    switch(typeValue){
+      case "Friendship" : return "rgb(77, 142, 254)";
+      case "Acceptance" : return "green";
+      default : return "null"; 
+    }
+  }
+
   return (
-    <div className='notifType'> 
+    <div className='notifType' style={{backgroundColor: notificationColorist(type)}}> 
         {type}
     </div>
   )
