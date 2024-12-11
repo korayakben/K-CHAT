@@ -49,7 +49,7 @@ app.use("/v1", putRoutes);
 app.use("/v1", deleteRoutes);
 
 io.on("connection", (socket)=>{
-    // console.log(`User connected. ID => ${socket.id}`);
+
     socket.on("sendChatMessage", (data)=>{
         socket.emit("receiveChatMessage", data)
         socket.broadcast.emit("receiveChatMessage", data)
