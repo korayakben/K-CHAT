@@ -36,7 +36,6 @@ export default function ExploreSearchBar() {
           const clickedUser = value ;
           const userData = await axios.post("http://localhost:3000/v1/UserByUsername", {username: clickedUser})
           localStorage.setItem("broughtUsername", JSON.stringify(userData.data[0]));
-          socket.emit("searchUser", value);
           window.location.href = "/profiles";
         }}
         renderInput={(params) => (

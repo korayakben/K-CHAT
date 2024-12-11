@@ -51,11 +51,6 @@ app.use("/v1", deleteRoutes);
 
 io.on("connection", (socket)=>{
     // console.log(`User connected. ID => ${socket.id}`);
-    socket.on("searchUser", async (data)=>{
-        const userData = await axios.post("http://localhost:3000/v1/UserByUsername", {username: data});
-        socket.broadcast.emit("bringProfile", userData.data[0]);
-    });
-
     socket.on("sendChatMessage", (data)=>{
         socket.emit("receiveChatMessage", data)
         socket.broadcast.emit("receiveChatMessage", data)
