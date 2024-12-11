@@ -12,6 +12,7 @@ import { bringFriendButtonState } from "../controllers/notification/bringFriendB
 import { acceptFriend } from "../controllers/notification/acceptFriend.js";
 import { areFriends } from "../controllers/notification/areFriends.js";
 import { bringFriends } from "../controllers/notification/bringFriends.js";
+import { bringMutuals } from "../controllers/notification/bringMutuals.js";
 
 const postRoutes = express.Router();
 
@@ -53,5 +54,8 @@ postRoutes.post("/areFriends", areFriends);
 
 // The Endpoint that brings the friends of the asked user
 postRoutes.post("/bringFriends", bringFriends);
+
+// The Endpoint that brings mutual friends of two users
+postRoutes.post("/mutualFriends", bringMutuals);
 
 export default postRoutes;

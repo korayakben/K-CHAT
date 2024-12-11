@@ -475,6 +475,10 @@
     background-color: rgb(9, 196, 9);
 }
 
+#contactPoint{
+    opacity: 0.5;
+}
+
 @media(max-width: 1100px){
     .upperEdit-Section, .lowerEdit-Section{
         display: flex;

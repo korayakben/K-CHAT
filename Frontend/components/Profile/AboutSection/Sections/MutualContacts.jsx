@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { userList } from '../../../../src/listsUsed/usersList';
 import { truncateText } from '../../../../src/utils/truncateText';
+import { io } from 'socket.io-client';
 
-// Util function to cut the username
-truncateText();
+const socket = io.connect("http://localhost:3000");
 
 function MutualContacts() {
   const [truncatedUsernames, setTruncatedUsernames] = useState([]);
+
+  const [mutualList, setMutualList] = useState([]);
 
   useEffect(() => {
     const elements = document.getElementsByClassName('username');
@@ -19,18 +21,22 @@ function MutualContacts() {
     }
 
     setTruncatedUsernames(truncatedList);
-  }, []);
 
+    socket.on("getMutuals", (data)=>{
+      setMutualList(data);
+    });
+
+  }, []);
 
 
   return (
     <div className='mutual-container'>
-      {userList.map((element, index) => (
+      {mutualList.map((element, index) => (
         <div className='mutualCard' key={index}>
-          <img src={element.img} alt="mutualPhoto" className='mutualPhoto' />
-          <span className='nickname'>{element.nickname}</span>
+          <img src="../../../../public/images/userImages/2.jpg" alt="mutualPhoto" className='mutualPhoto' />
+          <span className='nickname'>{element.username}</span>
           <span className='username' style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-            {truncatedUsernames[index] || element.name}
+            {truncatedUsernames[index] || element.name + " " + element.surname}
           </span>
         </div>
       ))}
