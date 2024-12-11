@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import ProfilePhoto from './ProfilePhoto'
 import AddFriendButton from './AddFriendButton'
 
-function ProfileBoard({ name, username }) {
+function ProfileBoard({ name, username, contactNumber }) {
   return (
     <div className='profileBoard-container'>
         <div className='profileBoard'>
@@ -14,7 +14,7 @@ function ProfileBoard({ name, username }) {
         </div>
 
         <div className='contacts-container'>
-            <span id="contact-count">{localStorage.getItem("contactNumber")} contacts</span>
+            <span id="contact-count">{contactNumber} contacts</span>
             <span id="contactPoint" style={{opacity: "0.5"}}>•</span>
             <span id="mutual-count">8 mutual</span>
         </div>

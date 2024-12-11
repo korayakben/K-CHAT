@@ -29,7 +29,7 @@ function ChatPage() {
           localStorage.getItem("contactNumber") > 0 ? "none" : "flex"
         }}>
           <Link to="/explore" id="addUserPhoto"><img src="../../public/images/add-user.png" alt="addUser" /></Link>
-          <Link id="addUserLink" to="/explore">You don't have any friends yet. Click to add some </Link>
+          <Link id="addUserLink" to="/explore">You don't have any friend yet. Click to add some...</Link>
         </div>
     </div>
   )

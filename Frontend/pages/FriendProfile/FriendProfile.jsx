@@ -4,14 +4,14 @@ import CovernBoard from '../../components/Profile/CovernBoard';
 import FriendAboutBar from '../../components/FriendProfile/FriendAboutBar';
 import io from "socket.io-client";
 import axios from 'axios';
+import CoverPhoto from '../../components/Profile/CovernBoard/CoverPhoto';
+import ProfileBoard from '../../components/Profile/CovernBoard/ProfileBoard';
 
 const socket = io.connect("http://localhost:3000");
 
 function FriendProfile() {
     const [broughtUsername, setBroughtUsername] = useState("");
     const searchedUser = JSON.parse(localStorage.getItem("broughtUsername")).username;
-
-    console.log(searchedUser);
 
     useEffect( async() => {
 
@@ -42,7 +42,13 @@ function FriendProfile() {
     return (
         <div className='profile-container'>
             <DrawerAppBar />
-            <CovernBoard name={JSON.parse(localStorage.getItem("broughtUsername")).name} username = {JSON.parse(localStorage.getItem("broughtUsername")).username}/> 
+            {/* <CovernBoard name={JSON.parse(localStorage.getItem("broughtUsername")).name} username = {JSON.parse(localStorage.getItem("broughtUsername")).username}/>  */}
+            <CoverPhoto/>
+            <ProfileBoard 
+            name={JSON.parse(localStorage.getItem("broughtUsername")).name} 
+            username = {JSON.parse(localStorage.getItem("broughtUsername")).username}
+            contactNumber={localStorage.getItem("contactNumber")}
+            />
             <FriendAboutBar />
         </div>
     );
