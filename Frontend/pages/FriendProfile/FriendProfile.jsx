@@ -42,7 +42,6 @@ function FriendProfile() {
     return (
         <div className='profile-container'>
             <DrawerAppBar />
-            {/* <CovernBoard name={JSON.parse(localStorage.getItem("broughtUsername")).name} username = {JSON.parse(localStorage.getItem("broughtUsername")).username}/>  */}
             <CoverPhoto/>
             <ProfileBoard 
             name={JSON.parse(localStorage.getItem("broughtUsername")).name} 
