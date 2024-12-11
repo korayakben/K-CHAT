@@ -9,6 +9,7 @@ function MutualContacts() {
   const [truncatedUsernames, setTruncatedUsernames] = useState([]);
 
   const [mutualList, setMutualList] = useState([]);
+  const [mutualWarner, setMutualWarner] = useState(null);
 
   useEffect(() => {
     const elements = document.getElementsByClassName('username');
@@ -24,6 +25,7 @@ function MutualContacts() {
 
     socket.on("getMutuals", (data)=>{
       setMutualList(data);
+      data.length > 0 ? setMutualWarner(null) : setMutualWarner(<span style={{color: "rgb(201, 6, 6)"}}>No Mutual Friends Yet :(</span>);
     });
 
   }, []);
@@ -40,6 +42,7 @@ function MutualContacts() {
           </span>
         </div>
       ))}
+      {mutualWarner}
     </div>
   );
 }

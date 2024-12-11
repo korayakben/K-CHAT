@@ -19,7 +19,7 @@ function AboutBar() {
             <ButtonGroup aria-label="Basic button group" className='aboutBar-container'>
                 <div className='aboutBar'>
                     <Button onClick={() => setActiveSection("about")}>About</Button>
-                    <Button onClick={() => setActiveSection("contacts")}>Mutual Contacts</Button>
+                    {/* <Button onClick={() => setActiveSection("contacts")}>Mutual Contacts</Button> */}
                     <Button onClick={() => setActiveSection("stories")}>Stories</Button>
                     <Button onClick={() => setActiveSection("edit")}>Edit Profile</Button>
                 </div>
