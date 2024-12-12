@@ -1,21 +1,17 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { truncateText } from '../../../src/utils/truncateText';
 
-// Util function to cut the message
-truncateText();
-
 function UserDiv(props) {
 
   const divRef = useRef(null);
   const [truncatedMessage, setTruncatedMessage] = useState('');
-  const message = "Merhaba, nasılsın? Bugün halletmem gereken bazı işler varMerhaba, nasılsın? Bugün halletmem gereken bazı işler varMerhaba, nasılsın? Bugün halletmem gereken bazı işler varMerhaba, nasılsın? Bugün halletmem gereken bazı işler varMerhaba, nasılsın? Bugün halletmem gereken bazı işler varMerhaba, nasılsın? Bugün halletmem gereken bazı işler varMerhaba, nasılsın? Bugün halletmem gereken bazı işler varMerhaba, nasılsın? Bugün halletmem gereken bazı işler varMerhaba, nasılsın? Bugün halletmem gereken bazı işler varMerhaba, nasılsın? Bugün halletmem gereken bazı işler varMerhaba, nasılsın? Bugün halletmem gereken bazı işler varMerhaba, nasılsın? Bugün halletmem gereken bazı işler varMerhaba, nasılsın? Bugün halletmem gereken bazı işler var";
+  const message = "No messages yet. Start the conversation!";
 
   const windowWidth = window.innerWidth;
 
-
-
   useEffect(() => {
     if (divRef.current) {
+      // Adjusting the length where the text will be cut at...
       const widthRanges = [
         { min: 681, max: 835, maxWidth: 570 },
         { min: 625, max: 680, maxWidth: 520 },

@@ -23,24 +23,21 @@ function UsersBar() {
       });
 
       setFriendsList(friendsArray);
+      setUserBarForm(friendsArray[0]);
     };
 
     fetchFriends();
   }, []); 
 
   const handleClick = (img, name) => {
-    console.log("Image Source:", img);
-    console.log("User Name:", name);
+    // console.log("Image Source:", img);
+    // console.log("User Name:", name);
+    alert(name);
     setUserBarForm({
       img: img,
       name: name
     });
   };
-
-  useEffect(() => {
-    // console.log("CONTEXT FORM");
-    // console.log(userBarForm);
-  }, [userBarForm]);
 
   return (
     <div className='usersBar' id="usersBar">

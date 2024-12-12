@@ -22,28 +22,6 @@ CREATE TABLE users (
 );
 
 
--- create_conversations_table.sql
-
-CREATE TABLE conversations (
-    id SERIAL PRIMARY KEY,
-    user1_id INT NOT NULL,       
-    user2_id INT NOT NULL,        
-    created_at TIMESTAMP DEFAULT NOW(), 
-    UNIQUE (user1_id, user2_id)    
-);
-
-
--- create_messages_table.sql
-
-CREATE TABLE messages (
-    id SERIAL PRIMARY KEY,         
-    conversation_id INT NOT NULL REFERENCES conversations(id) ON DELETE CASCADE, 
-    sender_id INT NOT NULL,      
-    content TEXT NOT NULL,        
-    timestamp TIMESTAMP DEFAULT NOW()
-);
-
-
 -- create_notifications_table.sql
 
 CREATE TABLE notifications(
@@ -88,6 +66,20 @@ CREATE TABLE friends (
     friendusername VARCHAR(50) NOT NULL,
     CONSTRAINT unique_friendship UNIQUE (username, friendusername)
 );
+
+
+-- create_messages_table.sql
+
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,                
+    sender_id INT NOT NULL,               
+    receiver_id INT NOT NULL,             
+    message TEXT NOT NULL,                
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    FOREIGN KEY (sender_id) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES users (id) ON DELETE CASCADE
+);
+
 
 
 

@@ -50,11 +50,6 @@ app.use("/v1", deleteRoutes);
 
 io.on("connection", (socket)=>{
 
-    socket.on("sendChatMessage", (data)=>{
-        socket.emit("receiveChatMessage", data)
-        socket.broadcast.emit("receiveChatMessage", data)
-    });
-
     // Friendship sending...
     socket.on("sendFriendship", async (data)=>{
         const friendship_notification = sendFriendship(data.from, data.to);
@@ -113,10 +108,17 @@ io.on("connection", (socket)=>{
         }
     });
 
+    // Mutual Friends...
     socket.on("mutualFriends", (data)=>{
         socket.broadcast.emit("getMutuals", data);
     });
 
+    // Handling Chat Messages...
+    socket.on("sendChatMessage", (data)=>{
+        socket.emit("receiveChatMessage", data)
+        socket.broadcast.emit("receiveChatMessage", data)
+        console.log(data);
+    });
 });
 
 const port = 3000;

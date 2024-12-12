@@ -2,9 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import SearchIcon from '@mui/icons-material/Search';
-import { userList } from '../../src/listsUsed/usersList';
 import { ChatContext } from '../../src/App';
-import axios from 'axios';
 
 function ChatHeaderBck() {
 

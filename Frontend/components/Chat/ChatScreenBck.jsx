@@ -30,7 +30,7 @@ function ChatScreenBck() {
 
   useEffect(()=>{
     socket.on("receiveChatMessage", (data)=>{
-      setShownMessage(data);  // My socket based message
+      setShownMessage(data); // My socket based message
     });
   },[socket]);
 
