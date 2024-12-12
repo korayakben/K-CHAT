@@ -21,7 +21,6 @@ function ChatScreenBck() {
     input.value = "";
   }
 
-
   function handleChange(e){
     setMessage(e.target.value);
   }
