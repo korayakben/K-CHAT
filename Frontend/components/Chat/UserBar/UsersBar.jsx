@@ -24,6 +24,7 @@ function UsersBar() {
 
       setFriendsList(friendsArray);
       setUserBarForm(friendsArray[0]);
+      localStorage.setItem("clickedReceiver", friendsArray[0].name);
     };
 
     fetchFriends();
@@ -31,13 +32,13 @@ function UsersBar() {
 
   const handleClick = (img, name) => {
     // console.log("Image Source:", img);
-    // console.log("User Name:", name);
-    alert(name);
+    localStorage.setItem("clickedReceiver", name);
     setUserBarForm({
       img: img,
       name: name
     });
   };
+
 
   return (
     <div className='usersBar' id="usersBar">

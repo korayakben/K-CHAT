@@ -114,10 +114,15 @@ io.on("connection", (socket)=>{
     });
 
     // Handling Chat Messages...
-    socket.on("sendChatMessage", (data)=>{
+    socket.on("sendChatMessage", async (data)=>{
         socket.emit("receiveChatMessage", data)
         socket.broadcast.emit("receiveChatMessage", data)
-        console.log(data);
+
+        await axios.post("http://localhost:3000/v1/storeMessage", {
+            sender: data.sender_username,
+            message: data.message,
+            receiver: data.receiver_username
+        });
     });
 });
 

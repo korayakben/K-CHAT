@@ -426,6 +426,10 @@
     overflow-y: auto;
 }
 
+.messageBalloon-container{
+    display: flex;
+}
+
 .inputBck-container{
     background-color: #fff;
     height: 10vh;
@@ -484,7 +488,16 @@
     max-width: 35%;
     padding: 0.5% 1.5% 0.5% 1.5%;
     border-radius: 10px;
-    animation: comeup 2s forwards
+    animation: comeup ease-in-out 0.5s;
+}
+
+@keyframes comeup {
+    0% {
+      transform: translateX(-10px) translateY(10px); 
+    }
+    100% {
+      transform: translateX(0) translateY(0);
+    }
 }
 
 .sidebarDirectors{

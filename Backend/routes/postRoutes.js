@@ -14,6 +14,7 @@ import { areFriends } from "../controllers/notification/areFriends.js";
 import { bringFriends } from "../controllers/notification/bringFriends.js";
 import { bringMutuals } from "../controllers/notification/bringMutuals.js";
 import { storeMessage } from "../controllers/messages/storeMessage.js";
+import { bringMessages } from "../controllers/messages/bringMessages.js";
 
 const postRoutes = express.Router();
 
@@ -61,5 +62,8 @@ postRoutes.post("/mutualFriends", bringMutuals);
 
 // The Endpoint that stores the messages into the db
 postRoutes.post("/storeMessage", storeMessage);
+
+// The Endpoint that takes the messages of two users out of the db
+postRoutes.post("/bringMessages", bringMessages);
 
 export default postRoutes;
