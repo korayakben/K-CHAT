@@ -8,8 +8,6 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 
 export default function RowRadioButtonsGroup() {
-
-    const [title, setTitle] = React.useState("Darkmode");
     const [buttonColor, setButtonColor] = React.useState("grey");
 
     const [modeImg, setModeImg] = React.useState(<DarkModeIcon className='mode-icon' sx={{position: "relative", top:"4px", left:"-3%"}}/>);
@@ -17,7 +15,6 @@ export default function RowRadioButtonsGroup() {
     const body = document.body;
 
     function seeDark(){
-        setTitle("Lightmode");
         body.style.backgroundColor = "rgb(35, 35, 35)";
         body.style.transition = "1s";
         body.style.color = "#fff";
@@ -25,11 +22,9 @@ export default function RowRadioButtonsGroup() {
         setModeImg(<LightModeIcon className='mode-icon' sx={{position: "relative", top:"4px", left:"-3%"}}/>);
 
         document.getElementById("description").style.color = "#fff"
-
     }
 
     function seeLight(){
-        setTitle("Darkmode");
         body.style.backgroundColor = "#fff";
         body.style.transition = "1s";
         body.style.color = "grey";
@@ -44,7 +39,7 @@ export default function RowRadioButtonsGroup() {
     <FormControl className='darkmode-container'>
       <FormLabel id="demo-row-radio-buttons-group-label" className='radio-title'>
         {modeImg}
-        <span style={{fontWeight:"600"}}>{title}</span>
+        <span style={{fontWeight:"600"}}>DarkMode</span>
       </FormLabel>
       <RadioGroup
         row
