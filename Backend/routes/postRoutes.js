@@ -15,6 +15,8 @@ import { bringFriends } from "../controllers/notification/bringFriends.js";
 import { bringMutuals } from "../controllers/notification/bringMutuals.js";
 import { storeMessage } from "../controllers/messages/storeMessage.js";
 import { bringMessages } from "../controllers/messages/bringMessages.js";
+import { passwordHasher } from "../controllers/user/passwordHasher.js";
+import { authenticator } from "../controllers/user/authenticator.js";
 
 const postRoutes = express.Router();
 
@@ -65,5 +67,11 @@ postRoutes.post("/storeMessage", storeMessage);
 
 // The Endpoint that takes the messages of two users out of the db
 postRoutes.post("/bringMessages", bringMessages);
+
+// The Endpoint that hashed the input password
+postRoutes.post("/hashIt", passwordHasher);
+
+// The Endpoint that authenticates users
+postRoutes.post("/authenticator", authenticator);
 
 export default postRoutes;

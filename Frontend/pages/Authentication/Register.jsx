@@ -42,7 +42,6 @@ function Register() {
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
-
         try{
             const usernameExists = await usernameChecker(formData.username);
             const emailExists = await emailChecker(formData.email);
@@ -52,12 +51,19 @@ function Register() {
                     const passwordLengthOk = passwordLengthDetector(formData.password);
                     if(passwordLengthOk){
                         if(formData.password === formData.passwordRepeat){
+                        // Password Hashing...
+                        const hashedPasswordData = await axios.post("http://localhost:3000/v1/hashIt", {
+                            password: formData.password
+                        });
+
+                        const hashedPassword = hashedPasswordData.data.hashed_password;
+
                         await axios.post("http://localhost:3000/v1/register", {
                             name: formData.name,
                             surname: formData.surname,
                             username: formData.username,
                             email: formData.email,
-                            password: formData.password,
+                            password: hashedPassword,
                             gender: formData.gender,
                             country: formData.country
                         });

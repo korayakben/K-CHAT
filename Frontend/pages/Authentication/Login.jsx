@@ -6,7 +6,7 @@ import StrategyButtons from '../../components/Register/StrategyButtons';
 import { Link, useNavigate } from "react-router-dom"
 import { Context } from '../../src/App';
 import { loginContext } from '../../src/App';
-import { authenticator } from '../../src/utils/authenticator';
+import axios from 'axios';
 
 function Login() {
 
@@ -38,7 +38,31 @@ function Login() {
 
     localStorage.setItem('userEmail', loginForm.email);
 
-    authenticator(email, password, setIsAuthenticated, setEmailWarner, setPasswordWarner, navigate);
+    const authForm = await axios.post("http://localhost:3000/v1/authenticator", {
+      email: email,
+      password: password
+    });
+
+    console.log(authForm.data);
+
+    if(!authForm.data.isAuthenticated){
+      if(!authForm.data.isEmailCorrect){
+        setEmailWarner("User not found"); 
+        setIsAuthenticated(false);
+      }
+      else{
+        setPasswordWarner("Password is wrong");
+        setEmailWarner(null);
+        setIsAuthenticated(false);
+      }
+    }
+    else if(authForm.data.isAuthenticated === "error"){
+        setPasswordWarner("An error came up while logging in");
+    }
+    else{
+      setIsAuthenticated(true);
+      navigate("/profile");
+    }
   }
 
   return (

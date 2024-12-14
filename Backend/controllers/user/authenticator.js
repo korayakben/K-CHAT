@@ -13,24 +13,18 @@ export const authenticator = async (req, res) => {
 
         if (emailExists) {
             if (isPasswordCorrect) {
-                // setIsAuthenticated(true);
-                // navigate("/profile");
                 res.status(200).json({
                     isAuthenticated: true,
                     isEmailCorrect: true,
                     isPasswordCorrect: true
                 });
             } else {
-                // setIsAuthenticated(false);
-                // setEmailWarner(null);
-                // setPasswordWarner("Password is wrong");
                 res.status(200).json({
                     isAuthenticated: false,
                     isEmailCorrect: true,
                     isPasswordCorrect: false
                 });            }
         } else {
-            // setEmailWarner("User not found");
             res.status(200).json({
                 isAuthenticated: false,
                 isEmailCorrect: false,
@@ -43,6 +37,5 @@ export const authenticator = async (req, res) => {
             message: "Internal Server Error",
             error: `${err}`
         });
-        // setPasswordWarner("An error came up while logging in");
     }
 }
