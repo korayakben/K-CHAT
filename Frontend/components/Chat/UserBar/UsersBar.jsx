@@ -17,14 +17,16 @@ function UsersBar() {
     const fetchFriends = async () => {
       const friendsData = await axios.post("http://localhost:3000/v1/bringFriends", { username: localStorage.getItem("username") });
 
-      const friendsArray = friendsData.data.friends.map((element) => {
-        const randomNumber = Math.floor(Math.random() * 26);
-        return { name: element, img: userList[randomNumber].img }; 
-      });
-
-      setFriendsList(friendsArray);
-      setUserBarForm(friendsArray[0]);
-      localStorage.setItem("clickedReceiver", friendsArray[0].name);
+      if(friendsData.data.length > 0){
+        const friendsArray = friendsData.data.friends.map((element) => {
+          const randomNumber = Math.floor(Math.random() * 26);
+          return { name: element, img: userList[randomNumber].img }; 
+        });
+  
+        setFriendsList(friendsArray);
+        setUserBarForm(friendsArray[0]);
+        localStorage.setItem("clickedReceiver", friendsArray[0].name);
+      }
     };
 
     fetchFriends();

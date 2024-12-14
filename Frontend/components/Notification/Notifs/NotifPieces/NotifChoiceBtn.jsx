@@ -33,6 +33,8 @@ function NotifChoiceBtn({ index, type }) {
     // Updating the notification storage...
     localStorage.setItem("notifications", JSON.stringify(response.data.newArr));
 
+    localStorage.setItem("myContactNumber", Number(localStorage.getItem("myContactNumber"))+1);
+
     // Sending acceptance notification to the accepted user...
     socket.emit("acceptanceNotification", {
       acceptedUser: acceptedUser,
