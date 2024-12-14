@@ -1,32 +1,49 @@
-import React from 'react'
+import React from 'react';
 import StBarTitles from './StBarTitles';
 import StAddIcon from './StAddIcon';
+import {io} from "socket.io-client"
+
+const socket = io.connect("http://localhost:3000");
 
 function StoriesBar() {
+  const handleImageClick = (src) => {
+    const img_URL = `../../public/images/storyImages/${src}`;
+    socket.emit("getStory", {imgUrl: img_URL});
+  };
+
   return (
     <div className='storiesBar-container'>
-        
-        <div className='storiesBarTitle-container'>
-            <StBarTitles/>
-            <StAddIcon/>
-        </div>
+      <div className='storiesBarTitle-container'>
+        <StBarTitles />
+        <StAddIcon />
+      </div>
 
-        <div className='storiesBarDiv'>
-        <img src="../../../../public/images/storyImages/story1.jpg" alt="storyPhoto" className='storiesBarPhoto'/>
-        <img src="../../../../public/images/storyImages/story2.jpg" alt="storyPhoto" className='storiesBarPhoto'/>
-        <img src="../../../../public/images/storyImages/story3.jpg" alt="storyPhoto" className='storiesBarPhoto'/>
-        <img src="../../../../public/images/storyImages/story4.jpg" alt="storyPhoto" className='storiesBarPhoto'/>
-        <img src="../../../../public/images/storyImages/story5.jpg" alt="storyPhoto" className='storiesBarPhoto'/>
-        <img src="../../../../public/images/storyImages/story6.jpg" alt="storyPhoto" className='storiesBarPhoto'/>
-        <img src="../../../../public/images/storyImages/story1.jpg" alt="storyPhoto" className='storiesBarPhoto'/>
-        <img src="../../../../public/images/storyImages/story2.jpg" alt="storyPhoto" className='storiesBarPhoto'/>
-        <img src="../../../../public/images/storyImages/story1.jpg" alt="storyPhoto" className='storiesBarPhoto'/>
-        <img src="../../../../public/images/storyImages/story2.jpg" alt="storyPhoto" className='storiesBarPhoto'/>
-        <img src="../../../../public/images/storyImages/story1.jpg" alt="storyPhoto" className='storiesBarPhoto'/>
-        <img src="../../../../public/images/storyImages/story2.jpg" alt="storyPhoto" className='storiesBarPhoto'/>
-        </div>
+      <div className='storiesBarDiv'>
+        {[
+          'story1.jpg',
+          'story2.jpg',
+          'story3.jpg',
+          'story4.jpg',
+          'story5.jpg',
+          'story6.jpg',
+          'story1.jpg',
+          'story2.jpg',
+          'story1.jpg',
+          'story2.jpg',
+          'story1.jpg',
+          'story2.jpg',
+        ].map((image, index) => (
+          <img
+            key={index}
+            src={`../../../../public/images/storyImages/${image}`}
+            alt="storyPhoto"
+            className='storiesBarPhoto'
+            onClick={() => handleImageClick(image)}
+          />
+        ))}
+      </div>
     </div>
-  )
+  );
 }
 
-export default StoriesBar
+export default StoriesBar;

@@ -1,34 +1,33 @@
-import React from 'react'
+import React from 'react';
+import {io} from "socket.io-client"
+
+const socket = io.connect("http://localhost:3000");
 
 function StoryBar() {
+  const images = [
+    'story1.jpg', 'story2.jpg', 'story3.jpg', 'story4.jpg',
+    'story1.jpg', 'story2.jpg', 'story3.jpg', 'story4.jpg',
+    'story1.jpg', 'story2.jpg', 'story3.jpg', 'story4.jpg'
+  ];
+
+  const handleImageClick = (src) => {
+    const img_URL = `../../../../public/images/storyImages/${src}`;
+    socket.emit("getStoryProfile", {imgUrl: img_URL});
+  };
+
   return (
     <div className='storiesDiv'>
-              <img src="../../../../public/images/storyImages/story1.jpg" alt="storyPhoto" className='storyPhoto'/>
-
-              <img src="../../../../public/images/storyImages/story2.jpg" alt="storyPhoto" className='storyPhoto'/>
-
-              <img src="../../../../public/images/storyImages/story3.jpg" alt="storyPhoto" className='storyPhoto'/>
-
-              <img src="../../../../public/images/storyImages/story4.jpg" alt="storyPhoto" className='storyPhoto'/>
-
-              <img src="../../../../public/images/storyImages/story1.jpg" alt="storyPhoto" className='storyPhoto'/>
-
-              <img src="../../../../public/images/storyImages/story2.jpg" alt="storyPhoto" className='storyPhoto'/>
-
-              <img src="../../../../public/images/storyImages/story3.jpg" alt="storyPhoto" className='storyPhoto'/>
-
-              <img src="../../../../public/images/storyImages/story4.jpg" alt="storyPhoto" className='storyPhoto'/>
-
-              <img src="../../../../public/images/storyImages/story1.jpg" alt="storyPhoto" className='storyPhoto'/>
-
-              <img src="../../../../public/images/storyImages/story2.jpg" alt="storyPhoto" className='storyPhoto'/>
-
-              <img src="../../../../public/images/storyImages/story3.jpg" alt="storyPhoto" className='storyPhoto'/>
-
-              <img src="../../../../public/images/storyImages/story4.jpg" alt="storyPhoto" className='storyPhoto'/>
-
-          </div>
-  )
+      {images.map((image, index) => (
+        <img
+          key={index}
+          src={`../../../../public/images/storyImages/${image}`}
+          alt="storyPhoto"
+          className='storyPhoto'
+          onClick={() => handleImageClick(image)}
+        />
+      ))}
+    </div>
+  );
 }
 
-export default StoryBar
+export default StoryBar;

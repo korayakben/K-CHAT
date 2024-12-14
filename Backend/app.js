@@ -115,7 +115,7 @@ io.on("connection", (socket)=>{
 
     // Handling Chat Messages...
     socket.on("sendChatMessage", async (data)=>{
-        socket.emit("receiveChatMessage", data)
+        // socket.emit("receiveChatMessage", data)
         socket.broadcast.emit("receiveChatMessage", data)
 
         await axios.post("http://localhost:3000/v1/storeMessage", {
@@ -124,6 +124,18 @@ io.on("connection", (socket)=>{
             receiver: data.receiver_username
         });
     });
+
+
+    // Transferring stories
+    socket.on("getStory", (data)=>{
+        socket.broadcast.emit("transferStory", data);
+    });
+
+    socket.on("getStoryProfile", (data)=>{
+        socket.broadcast.emit("transferStoryProfile", data);
+    });
+
+
 });
 
 const port = 3000;
