@@ -12,11 +12,12 @@ import deleteRoutes from "./routes/deleteRoutes.js";
 import http from "http";
 import { Server } from "socket.io"; 
 import axios from "axios"
-import { sendFriendship } from "./utils/notification/sendFriendship.js";
+import { sendFriendship } from "./utils/notification/templates/sendFriendship.js";
 import { storeNotificationinDb } from "./utils/notification/storeNotification.js";
 import { bringNotifications } from "./utils/notification/bringNotifications.js";
 import { notificationExists } from "./controllers/notificationExists.js";
-import { acceptanceNotification } from "./utils/notification/acceptanceNotification.js";
+import { acceptanceNotification } from "./utils/notification/templates/acceptanceNotification.js";
+import { messageNotification } from "./utils/notification/templates/messageNotification.js";
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -84,12 +85,10 @@ io.on("connection", (socket)=>{
     socket.on("bringFriendBtnState", async (data)=>{
         const buttonState = await axios.post("http://localhost:3000/v1/friendButtonState", data); 
         const status = buttonState.data.buttonState[0];
-        // console.log("STATUSSS");
-        // console.log(status);
         socket.emit("friendBtnState", status);
     });  
 
-    //Acceptance Notification
+    // Acceptance Notification
     socket.on("acceptanceNotification", async (data)=>{
         const notification = acceptanceNotification(data.acceptingUser, data.acceptedUser);
 
@@ -108,6 +107,21 @@ io.on("connection", (socket)=>{
         }
     });
 
+    // Message Notification
+    socket.on("messageNotification", async (data)=>{
+        const notification = messageNotification(data.sender, data.receiver, data.message);
+
+        storeNotificationinDb(
+            notification.type,
+            notification.topic,
+            notification.content,
+            notification.date,
+            data.sender,
+            data.receiver
+        );
+        
+    });
+
     // Mutual Friends...
     socket.on("mutualFriends", (data)=>{
         socket.broadcast.emit("getMutuals", data);
@@ -124,7 +138,6 @@ io.on("connection", (socket)=>{
             receiver: data.receiver_username
         });
     });
-
 
     // Transferring stories
     socket.on("getStory", (data)=>{

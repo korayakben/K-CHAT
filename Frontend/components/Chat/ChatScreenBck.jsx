@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import SendIcon from "@mui/icons-material/Send";
 import io from "socket.io-client";
 import axios from "axios";
+import { Context } from "../../src/App";
 
 const socket = io.connect("http://localhost:3000");
 
@@ -12,6 +13,8 @@ function ChatScreenBck() {
   const [message, setMessage] = useState("");
   const [messageArr, setMessageArr] = useState([]);
   const [myID, setMyID] = useState(null);
+
+  const [isAuthenticated, setIsAuthenticated] = useContext(Context);
 
   const messagesEndRef = useRef(null);
 
@@ -48,6 +51,15 @@ function ChatScreenBck() {
       message: message,
       receiver_username: localStorage.getItem("clickedReceiver"),
     });
+
+    // IsAuthenticated!!!!!!!!
+    if(isAuthenticated){
+      socket.emit("messageNotification", {
+        sender: localStorage.getItem("username"),
+        receiver: localStorage.getItem("clickedReceiver"),
+        message: message
+      });
+    }
   }
 
   useEffect(() => {

@@ -43,8 +43,6 @@ function Login() {
       password: password
     });
 
-    console.log(authForm.data);
-
     if(!authForm.data.isAuthenticated){
       if(!authForm.data.isEmailCorrect){
         setEmailWarner("User not found"); 

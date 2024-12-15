@@ -6,6 +6,7 @@ function NotifType({ type }) {
     switch(typeValue){
       case "Friendship" : return "rgb(77, 142, 254)";
       case "Acceptance" : return "green";
+      case "Message" : return "orange";
       default : return "null"; 
     }
   }

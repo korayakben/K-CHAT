@@ -21,20 +21,25 @@ function Notifications() {
   const navigate = useNavigate();
 
   useEffect(async ()=>{
-    const allNotifies = await axios.post("http://localhost:3000/v1/notifications", { username: localStorage.getItem("username") });
+    const fetchData = async ()=>{
+      const allNotifies = await axios.post("http://localhost:3000/v1/notifications", { username: localStorage.getItem("username") });
 
-    const notifiesLength = JSON.stringify(allNotifies.data.length);
+      const notifiesLength = JSON.stringify(allNotifies.data.length);
 
-    socket.emit("bringNotifications", {
-      data: allNotifies.data,
-      length: notifiesLength
-    });
+      socket.emit("bringNotifications", {
+        data: allNotifies.data,
+        length: notifiesLength
+      });
 
-    socket.on("usersNotifications", (data)=>{
-      localStorage.setItem("notifications", JSON.stringify(data));
+      socket.on("usersNotifications", (data)=>{
+        localStorage.setItem("notifications", JSON.stringify(data));
     });
 
     notifiesLength > 0 ? setEmptiness(null) : setEmptiness(<span>No notifications you've got</span>);
+    }
+
+
+    fetchData();
   }, []);
 
 
@@ -47,9 +52,7 @@ function Notifications() {
     });
     
     localStorage.setItem("notifications", JSON.stringify(response.data.newArr));
-
     navigate("/notifications");
-
   }
 
   return (
