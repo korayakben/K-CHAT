@@ -35,7 +35,8 @@ function ChatScreenBck() {
     setMessage(e.target.value);
   }
 
-  function sendMessage() {
+  function sendMessage(e) {
+    e.preventDefault();
     if (message.trim() === "") return;
     const newMessage = {
       sender_id: myID,
@@ -117,6 +118,7 @@ function ChatScreenBck() {
       </div>
 
       <div className="inputBck-container">
+      <form action="" id="messageScreen-form" onSubmit={sendMessage}>
         <div className="inputIconsbck-container">
           <button className="inputIconbck">
             <AddIcon />
@@ -128,11 +130,12 @@ function ChatScreenBck() {
             <EmojiEmotionsIcon />
           </button>
         </div>
-
+        
         <input type="text" id="messageInput" onChange={handleChange} />
-        <button className="inputIconbck" id="sendBtnBck" onClick={sendMessage}>
+        <button className="inputIconbck" id="sendBtnBck">
           <SendIcon />
         </button>
+        </form>
       </div>
     </div>
   );

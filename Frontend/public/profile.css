@@ -465,10 +465,18 @@
     height: 5vh;
     border-radius: 5px;
     padding: 1%;
-    width: 70%;
+    width: 80%;
     border: none;
     outline: none;
+}
 
+#messageScreen-form{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: start;
+    position: relative;
+    top: -1vh;
 }
 
 #sendBtnBck{
