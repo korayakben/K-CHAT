@@ -5,13 +5,12 @@ function UserDiv(props) {
 
   const divRef = useRef(null);
   const [truncatedMessage, setTruncatedMessage] = useState('');
-  const message = "No messages yet. Start the conversation!";
+  const message = props.message;  // Getting the message from props...
 
   const windowWidth = window.innerWidth;
 
   useEffect(() => {
     if (divRef.current) {
-      // Adjusting the length where the text will be cut at...
       const widthRanges = [
         { min: 681, max: 835, maxWidth: 570 },
         { min: 625, max: 680, maxWidth: 520 },
@@ -22,7 +21,7 @@ function UserDiv(props) {
         { min: 0, max: 409, maxWidth: 320 }
       ];
 
-      let maxWidth = 320; // Default max width
+      let maxWidth = 320;
 
       for (let range of widthRanges) {
         if (windowWidth <= range.max && windowWidth >= range.min) {
@@ -36,7 +35,6 @@ function UserDiv(props) {
     }
   }, [message, windowWidth]);
 
-
   return (
     <div className='userDiv' id="userDiv" >
       <img src={props.img} alt="photo" className='userPhotos' />
@@ -44,11 +42,9 @@ function UserDiv(props) {
       <div ref={divRef} style={{ display: "flex", flexDirection: "column", justifyContent: "center", paddingLeft: "2%" }}>
         <span className='userDivName' id="userDivName">{props.name}</span>
         <span className='truncatedMessage'>{truncatedMessage}</span>
-
       </div>
     </div>
   );
-
 }
 
 export default UserDiv;
