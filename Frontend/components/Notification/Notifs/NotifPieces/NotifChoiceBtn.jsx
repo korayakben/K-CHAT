@@ -22,6 +22,13 @@ function NotifChoiceBtn({ index, type }) {
       acceptedUser: acceptedUser
     });
 
+    // Handling the button state...
+    const btn_response = await axios.put("http://localhost:3000/v1/updateBtnState", {
+      newStatus: "FRIEND :)",
+      from_username: acceptedUser,
+      to_username: acceptingUser
+    });
+
     // Deleting the notification...
     const response = await axios.delete(`http://localhost:3000/v1/notifications`, {
       data: {
@@ -50,6 +57,15 @@ function NotifChoiceBtn({ index, type }) {
         notifArr: JSON.parse(localStorage.getItem("notifications")),
         index: index
       }
+    });
+
+    const from_username = JSON.parse(localStorage.getItem("notifications"))[index][0].from_username;
+
+    // Handling the button state...
+    const btn_response = await axios.put("http://localhost:3000/v1/updateBtnState", {
+      newStatus: "DELETE",
+      from_username: from_username,
+      to_username: acceptingUser
     });
     
     localStorage.setItem("notifications", JSON.stringify(response.data.newArr));

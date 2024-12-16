@@ -147,8 +147,6 @@ io.on("connection", (socket)=>{
     socket.on("getStoryProfile", (data)=>{
         socket.broadcast.emit("transferStoryProfile", data);
     });
-
-
 });
 
 const port = 3000;

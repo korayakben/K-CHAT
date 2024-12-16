@@ -48,6 +48,11 @@ function UsersBar() {
     fetchFriends();
   }, []);
 
+
+  useEffect(()=>{
+    localStorage.setItem("myContactNumber", friendsList.length);
+  }, [friendsList.length]);
+
   const handleClick = async (img, name) => {
     localStorage.setItem("clickedReceiver", name);
     setUserBarForm({
@@ -68,7 +73,7 @@ function UsersBar() {
             <UserDiv 
               img={element.img} 
               name={element.name} 
-              message={messages[element.name] || "No messages yet"}  // Son mesajı ya da varsayılan mesajı gönder
+              message={messages[element.name] || "No messages yet. Start the conversation!"}
             />
           </div>
         ))}

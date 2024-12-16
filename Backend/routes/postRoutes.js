@@ -17,6 +17,8 @@ import { storeMessage } from "../controllers/messages/storeMessage.js";
 import { bringMessages } from "../controllers/messages/bringMessages.js";
 import { passwordHasher } from "../controllers/user/passwordHasher.js";
 import { authenticator } from "../controllers/user/authenticator.js";
+import { unfriender } from "../controllers/user/unfriender.js";
+import { requestBreaker } from "../controllers/user/requestBreaker.js";
 
 const postRoutes = express.Router();
 
@@ -73,5 +75,11 @@ postRoutes.post("/hashIt", passwordHasher);
 
 // The Endpoint that authenticates users
 postRoutes.post("/authenticator", authenticator);
+
+// The Endpoint that calls a friendship request off
+postRoutes.post("/requestBreaker", requestBreaker);
+
+// The Endpoint that handles unfriending
+postRoutes.post("/unfriend", unfriender);
 
 export default postRoutes;
