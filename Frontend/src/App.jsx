@@ -48,11 +48,9 @@ function App() {
     name: userList[0].name
   });
 
-
   const [isAuthenticated, setIsAuthenticated] = useState(
     Cookies.get('authCookie') === 'true'
   );
-
 
   useEffect(() => {
     Cookies.set('authCookie', isAuthenticated, { expires: 7 });
