@@ -20,8 +20,14 @@ function AddFriendButton() {
         from_user: whoClicked,
         to_user: clickedUser,
       });
-      setAddButtonState('Add Friend');
-      localStorage.setItem('buttonStatus', 'Add Friend');
+      setAddButtonState('ADD FRIEND');
+      localStorage.setItem('buttonStatus', 'ADD FRIEND');
+
+      await axios.put("http://localhost:3000/v1/updateBtnState", {
+        newStatus: "ADD FRIEND",
+        from_username: whoClicked,
+        to_username: clickedUser
+      });
     } 
     
     else if (addButtonState === 'FRIEND :)') {
@@ -38,15 +44,15 @@ function AddFriendButton() {
           from_username: whoClicked,
           to_username: clickedUser
         });
-        setAddButtonState('Add Friend');
-        localStorage.setItem('buttonStatus', 'Add Friend');
+        setAddButtonState('ADD FRIEND');
+        localStorage.setItem('buttonStatus', 'ADD FRIEND');
         localStorage.setItem('contactNumber', Number(localStorage.getItem("contactNumber"))-1);
       }
     } 
     
     else {
-      setAddButtonState('Requested...');
-      localStorage.setItem('buttonStatus', 'Requested...');
+      setAddButtonState('REQUESTED...');
+      localStorage.setItem('buttonStatus', 'REQUESTED...');
 
       socket.emit('sendFriendship', { from: whoClicked, to: clickedUser });
       await axios.post('http://localhost:3000/v1/addfriend', {
