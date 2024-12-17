@@ -34,10 +34,24 @@ function SettingsBar() {
 
   return (
     <div className='settingsBar-container' id="settingsBar-container" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}> 
-      <button><SearchIcon/><Link to="/explore">Explore</Link></button>
-      <button onClick={fetchPersonalData}><PersonIcon/><Link to="/profile">Profile</Link></button>
-      <button><SettingsIcon/><Link to="/settings">Settings</Link></button>
-      <button onClick={logOut}><LogoutIcon/>Log Out</button>
+
+      <div className='settingsLink-container'>
+        <SearchIcon/>
+        <Link to="/explore" className='settingsLink'>Explore</Link>
+      </div>
+
+      <div className='settingsLink-container' onClick={fetchPersonalData}>
+        <PersonIcon/><Link to="/profile" className='settingsLink'>Profile</Link>
+      </div>
+
+      <div className='settingsLink-container'>
+        <SettingsIcon/>
+        <Link to="/settings" className='settingsLink'>Settings</Link>
+      </div>
+
+      <div className='settingsLink-container' onClick={logOut}>
+        <LogoutIcon/>Log Out
+        </div>
     </div>
   )
 }

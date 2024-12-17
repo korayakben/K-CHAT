@@ -528,7 +528,7 @@
     left: -50%;
 }
 
-.settingsBar-container > button{
+.settingsLink-container{
     border-style: none;
     height: 7vh;
     font-size: 120%;
@@ -538,16 +538,19 @@
     justify-items: center;
     align-items: center;
     gap: 5px;
-}
-
-.settingsBar-container > button:hover, .settingsBar-container > button > a:hover{
-    background-color: rgb(213, 234, 255);
-    color:rgb(0, 89, 255);
+    background-color: rgb(238, 238, 238);
+    color: #000;
     transition: 1s;
 }
 
-.settingsBar-container > button > a{
+.settingsLink{
     color: #000;
+    transition: 1s;
+}
+
+.settingsLink:hover, .settingsLink-container:hover{
+    color: grey;
+    transition: 1s;
 }
 
 .avatarnsettingsDiv{

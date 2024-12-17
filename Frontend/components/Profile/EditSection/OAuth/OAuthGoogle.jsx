@@ -18,7 +18,7 @@ function OAuthGoogle() {
                     </span>
                 </div>
 
-                <Switch {...label} defaultChecked />
+                <Switch {...label} defaultChecked id="googleOAuthChecked"/>
 
     </div>
   )

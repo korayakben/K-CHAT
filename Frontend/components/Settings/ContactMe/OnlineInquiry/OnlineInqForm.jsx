@@ -76,7 +76,7 @@ function OnlineInqForm() {
     <form action="" className='onlineInq-Form' onSubmit={handleSubmit}>
         <TextField className='onlineInq-input' value={name} variant="outlined" required disabled/>
         <TextField className='onlineInq-input' value={email} variant="outlined" required disabled/>
-        <TextField className='onlineInq-input' name="phone" placeholder='Phone' variant="outlined" required onChange={handleChange}/>
+        <TextField className='onlineInq-input' name="phone" autoComplete='phone' placeholder='Phone' variant="outlined" required onChange={handleChange}/>
         <TextField className='onlineInq-input' name="topic" placeholder='Topic' variant="outlined" required onChange={handleChange}/>
         <textarea id="textArea" className='onlineInq-input' name="message" placeholder='Message...' variant="outlined" required onChange={handleChange}/>
         <Button variant="contained" id="contactSend-btn" type='submit'>Send</Button>

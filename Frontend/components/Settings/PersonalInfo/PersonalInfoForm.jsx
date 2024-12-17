@@ -41,30 +41,30 @@ function PersonalInfoForm() {
 
   return (
     <div className='personalForm-container'>
-        <form action="" className='personalForm'>
+        <form className='personalForm'>
                 <div className='personalFormDiv'>
                     <label className='personalLeft'>Name</label>
-                    <input type="text" value={name} disabled/>
+                    <input type="text" value={name} name="name" autoComplete='name' disabled/>
                 </div>
 
                 <div className='personalFormDiv'>
                     <label className='personalLeft'>Surname</label>
-                    <input type="text" value={surname} disabled/>
+                    <input type="text" value={surname} name="surname" disabled/>
                 </div>
 
                 <div className='personalFormDiv'>
                     <label className='personalLeft'>Email</label>
-                    <input type="text" value={email} disabled/>
+                    <input type="text" value={email} name="email" autoComplete='email' disabled/>
                 </div>
 
                 <div className='personalFormDiv'>
                     <label className='personalLeft'>Birthday</label>
-                    <input type="text" value="Birthday" disabled/>
+                    <input type="text" value="Birthday" name='birthday' disabled/>
                 </div>
 
                 <div className='personalFormDiv'>
                     <label className='personalLeft'>Gender</label>
-                    <input type="text" value={gender} disabled/>
+                    <input type="text" value={gender} name="gender" disabled/>
                 </div>
         </form>
     </div>

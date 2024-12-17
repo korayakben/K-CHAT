@@ -49,10 +49,12 @@ function EditForm() {
                     <input 
                         type="text" 
                         name="name" 
+                        id="name"
                         value={name} 
                         className='editInput' 
                         onChange={(e) => setName(e.target.value)}
                         readOnly
+                        autoComplete="name"
                     />
                 </div>
 
@@ -62,6 +64,7 @@ function EditForm() {
                     <input 
                         type="text" 
                         name="lastname" 
+                        id="lastname"
                         value={surname} 
                         className='editInput' 
                         onChange={(e) => setLastName(e.target.value)}
@@ -77,8 +80,10 @@ function EditForm() {
                     type="email" 
                     value={email}  
                     name="email" 
+                    id="email"
                     className='editInput'
                     readOnly
+                    autoComplete="email"
                 />
                 <span id="emailDesc">You need to have at least one email connected with your account</span>
             </div>
@@ -90,9 +95,11 @@ function EditForm() {
                     <input 
                         type="text" 
                         name="phone" 
+                        id="phone"
                         className='editInput' 
                         value='+98 257 6985' 
                         readOnly
+                        autoComplete="phone"
                     />
                 </div>
 
@@ -102,10 +109,12 @@ function EditForm() {
                     <input 
                         type="text" 
                         name="country" 
+                        id="country"
                         className='editInput' 
                         value={country} 
                         onChange={(e) => setCountry(e.target.value)}
                         readOnly
+                        autoComplete="country"
                     />
                 </div>
 
