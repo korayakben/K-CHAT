@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 
 function MessageInput() {
 
-    const [message, sendMessage] = useState("");
+    const [message, sendMessage] = useState(""); 
+
+    function handleChange(e){
+      sendMessage(e.target.value);
+    }
     
-
-  function handleChange(e){
-    sendMessage(e.target.value);
-  }
-
   return (
     <div className='messageInput'>
         <input type="text" onChange={handleChange}/>

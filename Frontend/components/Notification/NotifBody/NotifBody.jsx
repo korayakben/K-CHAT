@@ -12,7 +12,7 @@ function NotifBody() {
   return (
     <div className='notifBody-container'>
         <NotifUser name={localStorage.getItem("name") + " " + localStorage.getItem("surname")} username={localStorage.getItem("username")}/>
-        <div style={{width: "70%", display: "flex", alignItems: "center"}}>
+        <div className='notifcounter-router'>
             <NotifCounter counter={notificationsLength}/>
             <NotifRouter/>
         </div>

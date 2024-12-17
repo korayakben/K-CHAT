@@ -493,7 +493,7 @@
     word-break: break-all;
     margin: 1.5%;
     width: fit-content;
-    max-width: 35%;
+    max-width: 40%;
     padding: 0.5% 1.5% 0.5% 1.5%;
     border-radius: 10px;
     animation: comeup ease-in-out 0.5s;

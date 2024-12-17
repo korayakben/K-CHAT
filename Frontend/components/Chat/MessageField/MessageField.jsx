@@ -9,8 +9,7 @@ function MessageField() {
     <div className='messageField-container'>
             <MessageIcons/>
             <MessageInput/>
-            <MessageSendIcons/>
-            
+            <MessageSendIcons/> 
     </div>
   )
 }

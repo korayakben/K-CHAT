@@ -62,13 +62,15 @@ function Notifications() {
               <button variant="contained" id='deleteNotif-btn' onClick={() => deleteNotification(index)}>
                 <ClearIcon />
               </button>
-              <div className='notifications'>
-                <NotifType type={element[0].type} />
-                <NotifTopic topic={element[0].title} />
-                <NotifContent content={element[0].content} />
-                <NotifChoiceBtn index={index} type={element[0].type} />
+              <div className='notif-date-container'>
+                <div className='notifications'>
+                  <NotifType type={element[0].type} />
+                  <NotifTopic topic={element[0].title} />
+                  <NotifContent content={element[0].content} />
+                  <NotifChoiceBtn index={index} type={element[0].type} />
+                </div>
+                <NotifDate date={element[0].createdat} />
               </div>
-              <NotifDate date={element[0].createdat} />
             </div>
           )
         })

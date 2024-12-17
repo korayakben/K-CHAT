@@ -11,18 +11,12 @@ import putRoutes from "./routes/putRoutes.js";
 import deleteRoutes from "./routes/deleteRoutes.js";
 import http from "http";
 import { Server } from "socket.io"; 
-import axios from "axios"
-import { sendFriendship } from "./utils/notification/templates/sendFriendship.js";
-import { storeNotificationinDb } from "./utils/notification/storeNotification.js";
-import { bringNotifications } from "./utils/notification/bringNotifications.js";
-import { notificationExists } from "./controllers/notificationExists.js";
-import { acceptanceNotification } from "./utils/notification/templates/acceptanceNotification.js";
-import { messageNotification } from "./utils/notification/templates/messageNotification.js";
+import { socketManager } from "./socketManager.js";
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-app.use(helmet()); //Add helmet.js
+app.use(helmet()); // Add helmet.js
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(join(__dirname, 'public')));
 app.use(bodyParser.json());
@@ -36,12 +30,12 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:5173",  //FRONTEND URL
+        origin: "http://localhost:5173",  // Client Url
         methods: ["GET", "POST"]
     }
 }); 
 
-//Connects to the DB
+// Connects to the DB
 connectDb();
 
 app.use("/v1", getRoutes);
@@ -49,105 +43,7 @@ app.use("/v1", postRoutes);
 app.use("/v1", putRoutes);
 app.use("/v1", deleteRoutes);
 
-io.on("connection", (socket)=>{
-
-    // Friendship sending...
-    socket.on("sendFriendship", async (data)=>{
-        const friendship_notification = sendFriendship(data.from, data.to);
-
-        // Prevention against notification duplication
-        const notificationExistence = await notificationExists(data.from, data.to, friendship_notification.type);
-
-        if(!notificationExistence){
-            storeNotificationinDb(
-                friendship_notification.type,
-                friendship_notification.topic,
-                friendship_notification.content,
-                friendship_notification.date,
-                data.from,
-                data.to
-            );
-    
-            socket.emit("getFriendData", friendship_notification);
-        }
-    });
-
-    socket.on("bringNotifications", async (data)=>{
-        const notifications = [];
-        for(let i=0;i<data.length;i++){
-            const lilNotify = await bringNotifications(data.data[i].notifid);
-            notifications.push(lilNotify);
-        }
-        socket.emit("usersNotifications", notifications);
-    });
-
-    // Button State...
-    socket.on("bringFriendBtnState", async (data)=>{
-        const buttonState = await axios.post("http://localhost:3000/v1/friendButtonState", data); 
-        const status = buttonState.data.buttonState[0];
-        socket.emit("friendBtnState", status);
-    });  
-
-    // Acceptance Notification
-    socket.on("acceptanceNotification", async (data)=>{
-        const notification = acceptanceNotification(data.acceptingUser, data.acceptedUser);
-
-        // Prevention against notification duplication
-        const notificationExistence = await notificationExists(data.acceptingUser, data.acceptedUser, notification.type)
-
-        if(!notificationExistence){
-            storeNotificationinDb(
-                notification.type,
-                notification.topic,
-                notification.content,
-                notification.date,
-                data.acceptingUser,
-                data.acceptedUser
-            );
-        }
-    });
-
-    // Message Notification
-    socket.on("messageNotification", async (data)=>{
-        const notification = messageNotification(data.sender, data.receiver, data.message);
-
-        storeNotificationinDb(
-            notification.type,
-            notification.topic,
-            notification.content,
-            notification.date,
-            data.sender,
-            data.receiver
-        );
-        
-    });
-
-    // Mutual Friends...
-    socket.on("mutualFriends", (data)=>{
-        socket.broadcast.emit("getMutuals", data);
-    });
-
-    // Handling Chat Messages...
-    socket.on("sendChatMessage", async (data)=>{
-        // socket.emit("receiveChatMessage", data)
-        socket.broadcast.emit("receiveChatMessage", data)
-
-        await axios.post("http://localhost:3000/v1/storeMessage", {
-            sender: data.sender_username,
-            message: data.message,
-            receiver: data.receiver_username
-        });
-    });
-
-    // Transferring stories
-    socket.on("getStory", (data)=>{
-        socket.broadcast.emit("transferStory", data);
-    });
-
-    socket.on("getStoryProfile", (data)=>{
-        socket.broadcast.emit("transferStoryProfile", data);
-    });
-});
+io.on("connection", socketManager);
 
 const port = 3000;
 server.listen(port, ()=>{

@@ -4,7 +4,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 function NotifDate({ date }) {
   return (
     <div className='notifDate'>
-        <AccessTimeIcon/>
+        <AccessTimeIcon id="dateIcon"/>
         <span>{date}</span>
     </div>
   )
