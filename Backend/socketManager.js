@@ -8,6 +8,15 @@ import axios from "axios";
 
 export const socketManager = (socket)=>{
 
+    // Sending Datas from Login Page...
+    socket.on("loginDatas", async (data)=>{
+        const responseData = await axios.post("http://localhost:3000/v1/userByEmail", {
+            email: data.email
+        })
+        const response = responseData.data;
+        socket.broadcast.emit("getLoginDatas", response);
+    });
+
     // Friendship sending...
     socket.on("sendFriendship", async (data)=>{
         const friendship_notification = sendFriendship(data.from, data.to);
@@ -104,5 +113,6 @@ export const socketManager = (socket)=>{
     socket.on("getStoryProfile", (data)=>{
         socket.broadcast.emit("transferStoryProfile", data);
     });
+
 };
 

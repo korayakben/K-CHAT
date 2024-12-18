@@ -25,15 +25,6 @@ function Notifications() {
 
       const notifiesLength = JSON.stringify(allNotifies.data.length);
 
-      socket.emit("bringNotifications", {
-        data: allNotifies.data,
-        length: notifiesLength
-      });
-
-      socket.on("usersNotifications", (data) => {
-        localStorage.setItem("notifications", JSON.stringify(data));
-      });
-
       notifiesLength > 0 ? setEmptiness(null) : setEmptiness(<span>No notifications you've got</span>);
     }
 

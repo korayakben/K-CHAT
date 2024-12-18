@@ -15,6 +15,31 @@ function ProfileBoard({ name, username, contactNumber }) {
   const user = JSON.parse(localStorage.getItem("broughtUsername")).username;
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const allNotifies = await axios.post("http://localhost:3000/v1/notifications", {
+          username: localStorage.getItem("username"),
+        });
+
+        const notifiesLength = JSON.stringify(allNotifies.data.length);
+
+        socket.emit("bringNotifications", {
+          data: allNotifies.data,
+          length: notifiesLength,
+        });
+
+        socket.on("usersNotifications", (data) => {
+          localStorage.setItem("notifications", JSON.stringify(data));
+        });
+      } catch (error) {
+        console.error("Error fetching notifications:", error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array to run only on mount
+
+  useEffect(() => {
     const fetchMutualFriends = async () => {
       try {
         const mutualFriendData = await axios.post("http://localhost:3000/v1/mutualFriends", {

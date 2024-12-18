@@ -5,7 +5,7 @@ import ExploreTitle from '../../components/Explore/ExploreTitle'
 import ExploreSearchBar from '../../components/Explore/ExploreSearchBar'
 import ExploreIcon from '../../components/Explore/ExploreIcon'
 
-function ExplorePage() {;
+function ExplorePage() {
 
   return (
     <div className='ExplorePage-container'>

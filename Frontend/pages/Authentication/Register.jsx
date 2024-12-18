@@ -41,6 +41,7 @@ function Register() {
 
 
     const handleSubmit = async (e)=>{
+
         e.preventDefault();
         try{
             const usernameExists = await usernameChecker(formData.username);
@@ -71,6 +72,27 @@ function Register() {
                         setEmailWarner(null);
                         setPasswordWarner(null);
                         setUsernameWarner(null);
+
+                        localStorage.setItem("username", formData.username);
+                        localStorage.setItem("name", formData.name);
+                        localStorage.setItem("surname", formData.surname);
+                        localStorage.setItem("gender", formData.gender)
+                        localStorage.setItem("country", formData.country);
+                        localStorage.setItem("email", formData.email);
+                        localStorage.setItem("broughtUsername", '{"id":37,"name":"default","surname":"default","username":"default","email":"default","password":"default","gender":"male","country":"default"}');
+                        localStorage.setItem("notifications", JSON.stringify([[
+                            {
+                              "notifid": "bca645d5-9b71-4a7e-b0e7-5e12a9a03fe8",
+                              "type": "Friendship",
+                              "title": "You Have a New Friend Request!",
+                              "content": "default wanted to add you as a friend. Click to accept the request!",
+                              "createdat": "2024-12-17T21:49:00.000Z",
+                              "from_username": "default",
+                              "to_username": "default"
+                            }
+                          ]]));
+                          
+                        localStorage.setItem("notifCounter", '0');
 
                         setSuccessWarner(<span style={{color: "green"}}>Your registration is successfully done</span>);
 

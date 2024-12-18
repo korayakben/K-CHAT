@@ -7,6 +7,9 @@ import { Link, useNavigate } from "react-router-dom"
 import { Context } from '../../src/App';
 import { loginContext } from '../../src/App';
 import axios from 'axios';
+import { io } from 'socket.io-client';
+
+const socket = io.connect("http://localhost:3000");
 
 function Login() {
 
@@ -19,6 +22,7 @@ function Login() {
   useEffect(()=>{
     document.body.style.overflowX = "hidden"
   },[]);
+
 
   const [loginForm, setLoginForm] = useContext(loginContext);
   
@@ -58,6 +62,26 @@ function Login() {
         setPasswordWarner("An error came up while logging in");
     }
     else{
+      socket.emit("loginDatas", {
+        email: email,
+        password: password
+      });
+      localStorage.setItem("broughtUsername", '{"id":37,"name":"default","surname":"default","username":"default","email":"default","password":"default","gender":"male","country":"default"}');
+      localStorage.setItem("notifications", JSON.stringify([[
+        {
+          "notifid": "bca645d5-9b71-4a7e-b0e7-5e12a9a03fe8",
+          "type": "Friendship",
+          "title": "You Have a New Friend Request!",
+          "content": "default wanted to add you as a friend. Click to accept the request!",
+          "createdat": "2024-12-17T21:49:00.000Z",
+          "from_username": "default",
+          "to_username": "default"
+        }
+      ]]));
+      
+    
+      localStorage.setItem("notifCounter", '0');
+      
       setIsAuthenticated(true);
       navigate("/profile");
     }
