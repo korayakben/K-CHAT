@@ -19,6 +19,7 @@ import { passwordHasher } from "../controllers/user/passwordHasher.js";
 import { authenticator } from "../controllers/user/authenticator.js";
 import { unfriender } from "../controllers/user/unfriender.js";
 import { requestBreaker } from "../controllers/user/requestBreaker.js";
+import { getAllNotificationsByID } from "../controllers/data/getNotificationByID.js";
 
 const postRoutes = express.Router();
 
@@ -45,6 +46,9 @@ postRoutes.post("/usernameCheck", checkUsernameExists);
 
 // The Endpoint that brings all notification IDs by user ID
 postRoutes.post("/notifications", getAllNotifications);
+
+// The Endpoint that brings all notification by its ID
+postRoutes.post("/notificationsByID", getAllNotificationsByID);
 
 // The Endpoint that handles friend requests
 postRoutes.post("/addfriend", addFriend);

@@ -13,6 +13,8 @@ function Profile() {
   const [username, setUsername] = useState(() => localStorage.getItem('username') || '');
   const [contactNumber, setContactNumber] = useState(() => localStorage.getItem('myContactNumber') || 0);
 
+  const [notifArrBack, setNotifArrBck] = useState([]);
+
   const fetchContactNumber = async (username) => {
     try {
       const myContactNumberData = await axios.post("http://localhost:3000/v1/bringFriends", { username: username });
@@ -41,12 +43,31 @@ function Profile() {
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
+
+      const allNotifies = await axios.post("http://localhost:3000/v1/notifications", { username: localStorage.getItem("username") });
+
+        allNotifies.data.map(async (item) => {
+          const response = await axios.post("http://localhost:3000/v1/notificationsByID", {
+            notifid: item.notifid
+          });
+        
+          setNotifArrBck((prev)=>[...prev, response.data]);
+        });
+
+        localStorage.setItem("notifications", JSON.stringify(notifArrBack));
     };
 
     if (loginForm.email && isAuthenticated) {
       fetchUserData();
     }
-  }, [loginForm.email]);
+
+
+  }, [loginForm.email, isAuthenticated]);
+
+
+  useEffect(()=>{
+    localStorage.setItem("notifications", JSON.stringify(notifArrBack));
+  }, [notifArrBack]);
 
   return (
     <div className='profile-container'>
