@@ -6,6 +6,9 @@ import UserTitle from './UserTitle';
 import { userList } from '../../../src/listsUsed/usersList';
 import { ChatContext } from '../../../src/App';
 import axios from 'axios';
+import { io } from 'socket.io-client';
+
+const socket = io.connect("http://localhost:3000")
 
 function UsersBar() {
 
@@ -20,6 +23,13 @@ function UsersBar() {
       if (friendsData.data.length > 0) {
         const friendsArray = friendsData.data.friends.map((element) => {
           const randomNumber = Math.floor(Math.random() * 26);
+
+          // userList[randomNumber].img
+          socket.emit("getSearchBarPhoto", { 
+            name: element, 
+            img: userList[randomNumber].img 
+          })
+
           return { name: element, img: userList[randomNumber].img };
         });
 

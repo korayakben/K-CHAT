@@ -75,6 +75,7 @@ function ChatScreenBck() {
       });
       setMyID(responseID.data[0].id);
     };
+
     fetchMyID();
   }, []);
 
@@ -87,7 +88,9 @@ function ChatScreenBck() {
       });
       setMessageArr(messagesData.data);
     };
+
     fetchData();
+
   }, [localStorage.getItem("clickedReceiver")]);
 
   return (

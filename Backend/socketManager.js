@@ -114,5 +114,9 @@ export const socketManager = (socket)=>{
         socket.broadcast.emit("transferStoryProfile", data);
     });
 
+    // Friend Search Bar 
+    socket.on("getSearchBarPhoto", (data)=>{
+        socket.broadcast.emit("searchBarPhoto", data);
+    });
 };
 
